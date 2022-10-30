@@ -69,7 +69,6 @@ read -p "Step 1. Enter email address from that App will send emails to users:  "
 read -p "Step 2. Enter password for above email address for SMTP server:  " MAIL_PASSWORD
 read -p "Step 3. Enter email for 'Reply To' field (usually same as email address):  " FLASKY_MAIL_SENDER
 echo ""
-echo ""
 echo "IMPORTANT! Administrator account setup."
 read -p "Enter email address of Fairy Web App Administrator. Email will be used for Login:  " FLASKY_ADMIN
 
@@ -204,7 +203,9 @@ git clone https://github.com/dmitriyteteruk/ProjectFairy.git
 export PROJECT_FOLDER="ProjectFairy"
 cd ~/$PROJECT_FOLDER
 # Delete unused files
-rm -rf .git/ .idea/ venv/ __pycache__/
+rm -rf .git/ .idea/ /venv /__pycache__
+
+read _
 
 # Install required libraries for Flask and MySQL
 sudo NEEDRESTART_MODE=a apt-get install python3-dev default-libmysqlclient-dev build-essential -y
@@ -213,13 +214,15 @@ sudo NEEDRESTART_MODE=a apt-get install python3-dev default-libmysqlclient-dev b
 # create and activate VENV
 python3 -m venv ~/$PROJECT_FOLDER/venv
 source ~/$PROJECT_FOLDER/venv/bin/activate
+read _
 
 # Install all project requirements
 pip install -r ~/$PROJECT_FOLDER/requirements.txt
-pip install gunicorn
+read _
 
 # Create config file with credentials for Flask App
 sudo touch /etc/config.json
+read _
 sudo tee -a /etc/config.json > /dev/null <<EOF
 {
         "MAIL_USERNAME": "$MAIL_USERNAME",
@@ -237,14 +240,18 @@ export FLASK_APP=~/$PROJECT_FOLDER/run.py
 
 # Install Nginx and Gunicorn
 sudo NEEDRESTART_MODE=a apt-get install nginx -y
+pip install gunicorn
+read _
 
 # Remove default Nginx config file
 sudo rm /etc/nginx/sites-enabled/default
+read _
 
 # Create Nginx config for Flask app
 sudo touch /etc/nginx/sites-enabled/flask
 export PUBLIC_IP_ADDRESS=`wget -qO- https://ipecho.net/plain`
 export LOCAL_IP_ADDRESS=`hostname -I`
+read _
 sudo tee -a /etc/nginx/sites-enabled/flask > /dev/null <<EOF
 limit_req_zone \$binary_remote_addr zone=login_register:10m rate=5r/s;
 limit_req_zone \$binary_remote_addr zone=all:10m rate=10r/s;
@@ -282,7 +289,9 @@ EOF
 
 # Install and config supervisor
 sudo NEEDRESTART_MODE=a apt install supervisor -y
+read _
 sudo touch /etc/supervisor/conf.d/flask.conf
+read _
 sudo tee -a /etc/supervisor/conf.d/flask.conf > /dev/null <<EOF
 [program:flask]
 directory=/home/ubuntu/$PROJECT_FOLDER
@@ -296,9 +305,19 @@ stderr_logfile=/var/log/flask/flask.err.log
 stdout_logfile=/var/log/flask/flask.out.log
 EOF
 
+sudo mkdir -p /var/log/flask
+read _
+sudo touch /var/log/flask/flask.err.log
+sudo touch /var/log/flask/flask.out.log
+read _
+
 # Restart Nginx
 sudo systemctl restart nginx
 sleep 5
+read _
+
+sudo supervisorctl reload
+read _
 
 # Install UFW and setting rules
 sudo NEEDRESTART_MODE=a apt install ufw -y
@@ -309,12 +328,7 @@ sudo ufw allow 80
 sudo ufw allow 443
 sudo ufw allow http/tcp
 echo "y" | sudo ufw enable
-
-sudo mkdir -p /var/log/flask
-sudo touch /var/log/flask/flask.err.log
-sudo touch /var/log/flask/flask.out.log
-
-sudo supervisorctl reload
+read _
 
 echo "Congratulations! Installation platform Fairy has been installed!"
 echo "Please vitis http://$PUBLIC_IP_ADDRESS/ or http://$LOCAL_IP_ADDRESS/ web page and use password reset function
