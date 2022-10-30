@@ -216,6 +216,7 @@ source ~/$PROJECT_FOLDER/venv/bin/activate
 
 # Install all project requirements
 pip install -r ~/$PROJECT_FOLDER/requirements.txt
+pip install gunicorn
 
 # Create config file with credentials for Flask App
 sudo touch /etc/config.json
@@ -237,8 +238,6 @@ export FLASK_APP=~/$PROJECT_FOLDER/run.py
 # Install Nginx and Gunicorn
 sudo NEEDRESTART_MODE=a apt-get install nginx -y
 
-pip install gunicorn
-
 # Remove default Nginx config file
 sudo rm /etc/nginx/sites-enabled/default
 
@@ -255,7 +254,7 @@ server
         listen 80;
         server_name $HOSTNAME
                     $PUBLIC_IP_ADDRESS
-					$LOCAL_IP_ADDRESS;
+					          $LOCAL_IP_ADDRESS;
 
         location /fairy/static/  {
                 root /home/ubuntu/$PROJECT_FOLDER/fairy/static;
@@ -281,10 +280,6 @@ server
 }
 EOF
 
-# Restart Nginx
-sudo systemctl restart nginx
-sleep 5
-
 # Install and config supervisor
 sudo NEEDRESTART_MODE=a apt install supervisor -y
 sudo touch /etc/supervisor/conf.d/flask.conf
@@ -300,6 +295,10 @@ killasgroup=true
 stderr_logfile=/var/log/flask/flask.err.log
 stdout_logfile=/var/log/flask/flask.out.log
 EOF
+
+# Restart Nginx
+sudo systemctl restart nginx
+sleep 5
 
 # Install UFW and setting rules
 sudo NEEDRESTART_MODE=a apt install ufw -y
@@ -318,5 +317,6 @@ sudo touch /var/log/flask/flask.out.log
 sudo supervisorctl reload
 
 echo "Congratulations! Installation platform Fairy has been installed!"
-echo "Please vitis http://$PUBLIC_IP_ADDRESS/ web page and use password reset function with $FLASKY_ADMIN."
+echo "Please vitis http://$PUBLIC_IP_ADDRESS/ or http://$LOCAL_IP_ADDRESS/ web page and use password reset function
+with $FLASKY_ADMIN."
 ###__END__###
