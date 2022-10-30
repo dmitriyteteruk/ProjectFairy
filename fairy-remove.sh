@@ -1,6 +1,7 @@
 #!/bin/bash
 #Purpose: Remove Project Fairy
 #_START_#
+set -x
 
 echo "This script is going to remove Project Fairy and all related services"
 echo "Please hit [ENTER] key to continue"
@@ -17,7 +18,7 @@ sudo apt-get remove ufw -y
 sudo apt-get purge ufw -y
 
 sudo systemctl stop nginx
-sleep 2
+sleep 5
 sudo apt-get remove nginx -y
 sudo apt-get purge nginx -y
 
@@ -26,7 +27,8 @@ sleep 2
 sudo apt-get remove supervisor -y
 sudo apt-get purge supervisor -y
 
-sudo rm -rf /etc/mysql /var/lib/mysql /var/lib/mysql-keyring /var/lib/mysql-files /etc/config.json /etc/nginx etc/supervisor/conf.d/flask.conf /var/log/flask
+sudo rm -rf /etc/mysql /var/lib/mysql /var/lib/mysql-keyring /var/lib/mysql-files /etc/config.json
+sudo rm -rf /etc/nginx /etc/supervisor/conf.d/flask.conf /var/log/flask
 
 sudo apt-get remove python3-venv -y
 sudo apt-get purge python3-venv -y

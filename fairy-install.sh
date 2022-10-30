@@ -218,7 +218,6 @@ read _
 
 # Install all project requirements
 pip install -r ~/$PROJECT_FOLDER/requirements.txt
-read _
 
 # Create config file with credentials for Flask App
 sudo touch /etc/config.json
@@ -237,6 +236,8 @@ EOF
 # Export flask app
 export FLASK_APP=~/$PROJECT_FOLDER/run.py
 
+## ------------------------- BUG при повторной установке ------------- #№
+## Не создаются файлы NGINX ###
 # Install Nginx and Gunicorn
 sudo NEEDRESTART_MODE=a apt-get install nginx -y
 pip install gunicorn
