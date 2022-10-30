@@ -41,6 +41,8 @@ sudo apt-get autoclean -y
 
 unset FLASKY_ADMIN PUBLIC_IP_ADDRESS PROJECT_FOLDER MAIL_USERNAME SQLALCHEMY_DATABASE_URI SECRET_KEY SECRET_KEY_FOR_TOKEN MAIL_PASSWORD FLASKY_MAIL_SENDER MYSQL_USER_NAME MYSQL_USER_PASSWORD MYSQL_ROOT_PASSWORD
 
+sudo rm -rf ~/fairy-install.sh ~/fairy-remove.sh
+
 echo "Project Fairy has been removed successfully!"
 
 #_END_#
