@@ -2,27 +2,27 @@
 #Purpose: Remove Project Fairy
 #_START_#
 
-echo "This script is going to remove MySQL and UFW services after 3 seconds"
+echo "This script is going to remove Project Fairy and all related services"
 echo "Please hit [ENTER] key to continue"
 read _
 
 sudo systemctl stop mysql.service
-sleep 5
+sleep 2
 sudo apt-get remove --purge mysql* -y
 sudo apt-get remove dbconfig-mysql -y
 
 sudo systemctl stop ufw
-sleep 5
+sleep 2
 sudo apt-get remove ufw -y
 sudo apt-get purge ufw -y
 
 sudo systemctl stop nginx
-sleep 5
+sleep 2
 sudo apt-get remove nginx -y
 sudo apt-get purge nginx -y
 
 sudo systemctl stop supervisor
-sleep 5
+sleep 2
 sudo apt-get remove supervisor -y
 sudo apt-get purge supervisor -y
 

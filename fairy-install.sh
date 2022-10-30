@@ -200,7 +200,7 @@ EOF
 sudo NEEDRESTART_MODE=a apt install python3-pip -y && sudo NEEDRESTART_MODE=a apt install python3-venv -y
 
 # Cloning App from github
-git clone https://github.com/dmitriyteteruk/Project-Fairy.git
+git clone https://github.com/dmitriyteteruk/ProjectFairy.git
 export PROJECT_FOLDER="ProjectFairy"
 cd ~/$PROJECT_FOLDER
 # Delete unused files
