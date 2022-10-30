@@ -64,7 +64,7 @@ export SECRET_KEY=`date +%ss | sha256sum | base64 | head -c 16`
 export SECRET_KEY_FOR_TOKEN=`date +%mm | sha256sum | base64 | head -c 16`
 
 #  Mail Settings setup
-echo "Please add requried information for your SMTP server."
+echo "Please add required information for your SMTP server."
 read -p "Step 1. Enter email address from that App will send emails to users:  " MAIL_USERNAME
 read -p "Step 2. Enter password for above email address for SMTP server:  " MAIL_PASSWORD
 read -p "Step 3. Enter email for 'Reply To' field (usually same as email address):  " FLASKY_MAIL_SENDER
@@ -77,7 +77,7 @@ read -p "Enter email address of Fairy Web App Administrator. Email will be used 
 echo <<EOF
 "#############################################################"
 "#                                                           #"
-"# PLEASE RECORD BELOW CREDENTIALS! 		                 #"
+"# PLEASE RECORD BELOW CREDENTIALS! 		                     #"
 "# MySQL root password: $MYSQL_ROOT_PASSWORD                 #"
 "# MySQL user name: $MYSQL_USER_NAME                         #"
 "# MySQL user password: $MYSQL_USER_PASSWORD                 #"
@@ -201,15 +201,12 @@ sudo NEEDRESTART_MODE=a apt install python3-pip -y && sudo NEEDRESTART_MODE=a ap
 
 # Cloning App from github
 git clone https://github.com/dmitriyteteruk/Project-Fairy.git
-mv
 export PROJECT_FOLDER="ProjectFairy"
-
-# Renaming github project name to ProjectFairy and deleted unused files
-mv ~/Project-Fairy/ ~/$PROJECT_FOLDER/
-cd ~/$PROJECT_FOLDER/
+cd ~/$PROJECT_FOLDER
+# Delete unused files
 rm -rf .git/ .idea/ venv/ __pycache__/
 
-# Install required libriares for Flask and MySQL
+# Install required libraries for Flask and MySQL
 sudo NEEDRESTART_MODE=a apt-get install python3-dev default-libmysqlclient-dev build-essential -y
 
 # Configuring Flask App
@@ -265,7 +262,7 @@ server
         }
 
 
-        location (/login|/resiter) {
+        location (/login|/register) {
                 limit_req zone=login_register;
                 limit_req_status 444;
         }
@@ -320,6 +317,6 @@ sudo touch /var/log/flask/flask.out.log
 
 sudo supervisorctl reload
 
-echo "Congratulations! Installation platofrm Fairy has been installed!"
+echo "Congratulations! Installation platform Fairy has been installed!"
 echo "Please vitis http://$PUBLIC_IP_ADDRESS/ web page and use password reset function with $FLASKY_ADMIN."
 ###__END__###
