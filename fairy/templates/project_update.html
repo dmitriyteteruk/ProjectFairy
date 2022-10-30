@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}
+    Подшефные учреждения
+{% endblock %}
+{% block content %}
+    {% if current_user.is_authenticated %}
+        {% if current_user.role == "admin" %}
+            <hr>
+            <div class="col">
+            <h3>Редактировать учреждение</h3><br>
+            <form method="post" class="project_form">
+                <!-- защита от Cross Site Request Forgery -->
+
+                {{ project_form.hidden_tag() }}
+                <div class="row">
+                    <div class="col-2"> {{ project_form.name.label }}</div>
+                    <div class="col-10"><input class='form-control' name="name" value="{{ project.name }}"></div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-2"> {{ project_form.description.label }}</div>
+                    <div class="col-10"><input class='form-control' name="description" value="{{ project.description }}"></div>
+                </div>
+                                <br>
+                <div class="row">
+                    <div class="col-2"> {{ project_form.delivery_date.label }}</div>
+                    <div class="col-10"><input type="date" class='form-control' name="delivery_date" value="{{ project
+                    .delivery_date }}"></div>
+                </div>
+                                                <br>
+                <div class="row">
+                    <div class="col-2"> {{ project_form.visit_date.label }}</div>
+                      <div class="col-10"><input type="date" class='form-control' name="visit_date" value="{{ project.visit_date
+                              }}"></div>
+                </div>
+                                                <br>
+                            <div class="row">
+                    <div class="col" style="text-align: right">
+                        {{ project_form.submit(class="btn btn-primary", value='Сохранить') }}
+                        <a class="btn btn-primary" href="{{ url_for('projects_bp.projects_page', page_num=1)
+                                }}">Отмена</a>
+                </div> </div>
+
+
+            </form>
+        {% else %}
+            <div class="col"><h3>У вас недостаточно прав для просмотра данной страницы.</h3></div>
+        {% endif %}
+    {% endif %}
+
+
+
+
+
+
+
+{% endblock %}

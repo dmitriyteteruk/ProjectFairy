@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}
+    Добавить ребенка в проект
+{% endblock %}
+{% block content %}
+    {% if current_user.is_authenticated %}
+        {% if current_user.role == "admin" %}
+            <hr>
+            <div class="col">
+                <h3>Добавить ребенка</h3><br>
+                <form method="post" class="kid_form">
+                    <!-- защита от Cross Site Request Forgery -->
+                    {{ kid_form.hidden_tag() }}
+                    <div class="row">
+                        <div class="col-2"> {{ kid_form.name.label }}</div>
+                        <div class="col-10">{{ kid_form.name(class='form-control') }}</div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-2"> {{ kid_form.birthday.label }}</div>
+                        <div class="col-10">{{ kid_form.birthday(class='form-control') }}</div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-2"> {{ kid_form.house_id.label }}</div>
+
+                        <div class="col-10">
+                            <select name="house_id" class="form-control">
+                                {% for house in list_of_houses %}
+                                    <option value="{{ house.id }}">{{ house.short_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col" style="text-align: right">
+                            {{ kid_form.submit(class="btn btn-primary") }}
+                            <a class="btn btn-primary" href="{{ url_for('kids_bp.kids_page', page_num=1) }}">Отмена</a>
+                        </div>
+                    </div>
+                </form>
+                {% else %}
+                <div class="col"><h3>У вас недостаточно прав для просмотра данной страницы.</h3></div>
+            </div>
+        {% endif %}
+    {% endif %}
+{% endblock %}

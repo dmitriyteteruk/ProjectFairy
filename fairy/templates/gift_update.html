@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block title %}
+    Редактировать подарок
+{% endblock %}
+{% block content %}
+    {% if current_user.is_authenticated %}
+        {% if current_user.role == "admin" %}
+            <hr>
+                <h3>Добавить подарок</h3><br>
+                <form method="POST" enctype="multipart/form-data">
+                    <!-- защита от Cross Site Request Forgery -->
+                    {{ gift_form.hidden_tag() }}
+
+                    <div class="row">
+                        <div class="col-2"> {{ gift_form.name.label }}</div>
+                        <div class="col-10"><input class='form-control' name="name" value="{{ gift.name }}"></div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-2"> {{ gift_form.description.label }}</div>
+                        <div class="col-10"><input class='form-control' name="description"
+                                                   value="{{ gift.description }}"></div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-2"> {{ gift_form.house.label }}</div>
+                        <div class="col-10">
+                            <select class='form-control' name="house">
+                                <option value="{{ kid.house.id }}">{{ kid.house.short_name }}</option>
+                                {% for h in list_of_houses_without_current %}
+                                    <option value="{{ h.id }}">{{ h.short_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-2"> {{ gift_form.kid.label }}</div>
+                        <div class="col-10">
+                            <select class='form-control' name="kid">
+                                <option value="{{ kid.id }}">{{ kid.name }}</option>
+                                {% for h in kids_without_current %}
+                                    <option value="{{ h.id }}">{{ h.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-2"> {{ gift_form.project_id.label }}</div>
+                        <div class="col-10">
+                            <select class='form-control' name="project_id">
+                                <option value="{{ project.id }}">{{ project.name }}</option>
+                                {% for h in project_without_current %}
+                                    <option value="{{ h.id }}">{{ h.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    {% if filename %}
+                        <div>
+                            <img width="800" src="{{ url_for("gifts_bp.display_image", filename=filename) }}">
+                        </div>
+                    {% endif %}
+                    <div class="row">
+                        <div class="col-2"> {{ gift_form.postcard_file.label }}</div>
+                        <div class="col-10"><input type="file" name="postcard_url" autocomplete="off" required
+                                                   value="{{ gift.postcard_url }}">{{ gift.postcard_url }}</div>
+                    </div>
+                    <br>
+                    <input type="submit" class="btn btn-primary">
+                </form>
+                <script>
+                    house_select = document.getElementById('house');
+                    kid_select = document.getElementById('kid');
+
+                    house_select.onchange = function () {
+                        house = house_select.value;
+                        fetch('/gift/edit/' + house).then(function (response) {
+                            response.json().then(function (data) {
+                                optionHTML = '';
+                                for (kid of data.kidhouse) {
+                                    optionHTML += '<option value="' + kid.id + '">' + kid.name + '</option>'
+                                }
+                                kid_select.innerHTML = optionHTML;
+                            });
+                        });
+                    }
+                </script>
+
+                {% else %}
+                <div class="col"><h3>У вас недостаточно прав для просмотра данной страницы.</h3></div>
+        {% endif %}
+    {% endif %}
+{% endblock %}

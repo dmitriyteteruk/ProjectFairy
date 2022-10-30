@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% block title %}
+    Панель администратора проектов портала ФЕЯ
+{% endblock %}
+{% block content %}
+    {% if current_user.is_authenticated %}
+        {% if current_user.role == "admin" %}
+            <hr>
+            <div class="col">
+                <h3>Все подарки</h3>
+                <table class="table">
+                    <tr>
+                        <th>Всего подарков</th>
+                        <th>На Елке</th>
+                        <th>Снято с Елки</th>
+                        <th>Заказано</th>
+                        <th>Доставлено на СВХ</th>
+                    </tr>
+                    <!-- here is a for-loop to give us all the socks -->
+
+                    <tr>
+                        <td>{{ gifts|count }}</td>
+                        <td>
+                            {{ gifts_on_tree|count }}
+                        </td>
+                        <td>
+                            {{ gifts_picked_by_santas|count }}
+                        </td>
+                        <td>
+                            {{ gifts_ordered|count }}
+                        </td>
+                        <td>
+                            {{ gifts_on_warehouse|count }}
+                        </td>
+                    </tr>
+                </table>
+                <div class="col">
+                    <input type="button" value="Добавить подарок"></div>
+            </div>
+            <br>
+            <hr>
+            <div class="col">
+                <h3>Все проекты</h3>
+                <table class="table">
+                    <tr>
+                        <th>Название</th>
+                        <th>Дата доставки на СВХ</th>
+                        <th>Дата доставки детям</th>
+                        <th>Редактировать</th>
+                    </tr>
+                    <!-- here is a for-loop to give us all the socks -->
+                    {% for project in projects %}
+                        <tr>
+                            <td>{{ project.name }}</td>
+                            <td>
+                                {{ project.delivery_date.strftime('%d.%m.%Y') }}
+                            </td>
+                            <td>
+                                {{ project.visit_date.strftime('%d.%m.%Y') }}
+                            </td>
+                        <td>
+                            <a href="#{{ project.id }}">Редактировать</a>
+                        </td>
+                        </tr>
+                    {% endfor %}
+
+
+                </table>
+                <div class="col">
+                    <input type="button" value="Добавить проект"></div>
+            </div>
+                        <br>
+            <hr>
+            <div class="col">
+                <h3>Все учреждения</h3>
+                <table class="table">
+                    <tr>
+                        <th>Название</th>
+                        <th>Контактное лицо</th>
+                        <th>Телефон</th>
+                        <th>Редактировать</th>
+                    </tr>
+                    <!-- here is a for-loop to give us all the socks -->
+                    {% for house in houses %}
+
+                        <tr>
+                            <td>{{ house.short_name }}</td>
+                            <td>
+                                {{ house.contact_person}}
+                            </td>
+                            <td>
+                                {{ house.phone}}
+                            </td>
+                        <td>
+                            <span style="font-size: 18px;color: green;">
+                              <a href="/{{ house.id }}/edit">
+                                  <i class="fas fa-edit"></i>
+                              </a>
+                            </span>|&nbsp;
+                              <span style="font-size: 18px;color: darkred;">
+                              <a href="/{{ house.id }}/delete">
+                                  <i class="fas fa-trash-alt"></i>
+                              </a>
+                            </span>
+
+
+                        </td>
+                        </tr>
+                    {% endfor %}
+
+
+                </table>
+                <div class="col">
+                    <a href="{{ url_for('houses_bp.new_house_page') }}"><input type="button" value="Добавить
+                    учреждение"></a>
+                </div>
+            </div>
+            <br>
+
+
+        {% else %}
+            <div class="col"><h3>У вас недостаточно прав для просмотра данной страницы.</h3></div>
+        {% endif %}
+    {% endif %}
+
+
+
+
+
+
+
+{% endblock %}

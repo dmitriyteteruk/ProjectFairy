@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block title %}
+    Подопечные дети
+{% endblock %}
+{% block content %}
+    {% if current_user.is_authenticated %}
+        {% if current_user.role == "admin" %}
+            <hr>
+            <div class="col">
+                <h3>Подопечные дети</h3>
+                <table class="table">
+                    <tr>
+                        <th>Ребенок</th>
+                        <th>Учреждение</th>
+                        <th>Действие</th>
+                    </tr>
+
+
+                    <tr>{% for kid in kids.items %}
+                        <td>{{ kid.name }}
+                        {% if age_calculator(kid.birthday) == 1 %}
+                                ({{ age_calculator(kid.birthday) }} год)
+                            {% endif %}
+                            {% if 2 <= age_calculator(kid.birthday) <= 4 %}
+                                ({{ age_calculator(kid.birthday) }} года)
+                            {% endif %}
+                            {% if 5 <= age_calculator(kid.birthday) <= 20 %}
+                                ({{ age_calculator(kid.birthday) }} лет)
+                            {% endif %}
+                        </td>
+                        <td>
+                            {{ kid.house.short_name }}
+                        </td>
+                        <td>
+                            <span style="font-size: 18px;color: green;">
+                              <a href="/kids/edit/{{ kid.id }}">
+                                  <i class="fas fa-edit"></i>
+                              </a>
+                            </span>|&nbsp;
+                            <span style="font-size: 18px;color: darkred;">
+                              <a href="/kids/delete/{{ kid.id }}">
+                                  <i class="fas fa-trash-alt"></i>
+                              </a>
+                            </span>
+
+
+                        </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            <div class="col"> {% for page in kids.iter_pages(left_edge=3, right_edge=3, left_current=3,
+            right_current=3) %}
+                    {% if page %}
+                    <a class="btn btn-primary" href="{{ url_for('kids_bp.kids_page', page_num=page) }}"> {{ page }}</a>
+                    {% endif %}
+                {% endfor %}
+            </div>  <br>
+                <div class="col">
+                    <a class="btn btn-primary" href="{{ url_for('kids_bp.new_kid_page') }}">Добавить ребенка</a>
+                </div>
+            </div>
+            <br>
+        {% else %}
+            <div class="col"><h3>У вас недостаточно прав для просмотра данной страницы.</h3></div>
+        {% endif %}
+    {% endif %}
+{% endblock %}

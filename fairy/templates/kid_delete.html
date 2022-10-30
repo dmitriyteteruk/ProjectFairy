@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}
+    Удаление объекта
+{% endblock %}
+{% block content %}
+    {% if current_user.is_authenticated %}
+        {% if current_user.role == "admin" %}
+            <hr>
+            <h3>Удалить запись о ребенке {{ kid.name }}?</h3><br>
+            <h4 style="color: darkred">Данное действие невозможно отменить!</h4><br>
+            <form method="post" action="">
+                Нажмите кнопку "Удалить" для подтверждения<br><br>
+
+                <input type="submit" value="Удалить" class="btn btn-danger">
+                <a href="{{ url_for('kids_bp.kids_page', page_num=1) }}">
+                <input type="button" value="Отмена" class="btn btn-primary"></a>
+            </form>
+        {% else %}
+            <div class="col"><h3>У вас недостаточно прав для просмотра данной страницы.</h3></div>
+        {% endif %}
+    {% endif %}
+{% endblock %}

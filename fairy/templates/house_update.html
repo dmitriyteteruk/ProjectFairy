@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %}
+    Подшефные учреждения
+{% endblock %}
+{% block content %}
+        {% if current_user.is_authenticated %}
+            {% if current_user.role == "admin" %}
+                <hr>
+                <div class="col">
+                    <h3>Редактировать учреждение</h3><br>
+                    <form method="post" class="house_form">
+                        <!-- защита от Cross Site Request Forgery -->
+
+                        {{ house_form.hidden_tag() }}
+                        <div class="row">
+                            <div class="col-2"> {{ house_form.short_name.label }}</div>
+                            <div class="col-10"><input class='form-control' name="short_name"
+                                                       value="{{ house.short_name }}"></div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-2"> {{ house_form.full_name.label }}</div>
+                            <div class="col-10"><input class='form-control' name="full_name"
+                                                       value="{{ house.full_name }}"></div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-2"> {{ house_form.address.label }}</div>
+                            <div class="col-10"><input class='form-control' name="address" value="{{ house.address }}">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-2"> {{ house_form.email_address.label }}</div>
+                            <div class="col-10"><input class='form-control' name="email_address"
+                                                       value="{{ house.email }}"></div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-2"> {{ house_form.phone.label }}</div>
+                            <div class="col-10"><input class='form-control' name="phone" value="{{ house.phone }}">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-2"> {{ house_form.contact_person.label }}</div>
+                            <div class="col-10"><input class='form-control' name="contact_person"
+                                                       value="{{ house.contact_person }}"></div>
+                        </div>
+
+
+                        <br>
+                        <div class="row">
+                            <div class="col" style="text-align: right">
+                                {{ house_form.submit(class="btn btn-primary", value='Сохранить') }}
+                                <a class="btn btn-primary" href="{{ url_for('houses_bp.houses_page') }}">Отмена</a>
+                            </div>
+                        </div>
+                    </form>
+                    {% else %}
+                    <div class="col"><h3>У вас недостаточно прав для просмотра данной страницы.</h3></div>
+                </div>
+            {% endif %}
+        {% endif %}
+{% endblock %}

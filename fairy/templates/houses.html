@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}
+    Подшефные учреждения
+{% endblock %}
+{% block content %}
+    {% if current_user.is_authenticated %}
+        {% if current_user.role == "admin" %}
+            <hr>
+            <div class="col">
+                <h3>Подшефные учреждения</h3>
+                <table class="table">
+                    <tr>
+                        <th>Название</th>
+                        <th>Всего детей</th>
+                        <th>Контактное лицо</th>
+                        <th>Телефон</th>
+                        <th>Действие</th>
+                    </tr>
+                    {% for element in houses_with_kids %}
+                        <tr>
+                            <td>
+                                {{ element.short_name }}
+                            </td>
+                            <td>
+                                {{ element.kid_sum }}
+                            </td>
+                            <td>
+                                {{ element.contact_person }}
+                            </td>
+                            <td>
+                                {{ element.phone }}
+                            </td>
+                            <td>
+                    <span style="font-size: 18px;color: green;">
+                              <a href="/houses/edit/{{ element.id }}">
+                                  <i class="fas fa-edit"></i>
+                              </a>
+                            </span>|&nbsp;
+                                <span style="font-size: 18px;color: darkred;">
+                              <a href="/houses/delete/{{ element.id }}">
+                                  <i class="fas fa-trash-alt"></i>
+                              </a>
+                            </span>
+                            </td>
+                        </tr>{% endfor %}
+
+
+                </table>
+                <div class="col">
+                    <a class="btn btn-primary" href="{{ url_for('houses_bp.new_house_page') }}">Добавить учреждение</a>
+                </div>
+            </div>
+            <br>
+
+
+        {% else %}
+            <div class="col"><h3>У вас недостаточно прав для просмотра данной страницы.</h3></div>
+        {% endif %}
+    {% endif %}
+{% endblock %}

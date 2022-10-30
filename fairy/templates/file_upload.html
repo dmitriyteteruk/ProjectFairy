@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}
+    Добавить подарок
+{% endblock %}
+{% block content %}
+    {% if current_user.is_authenticated %}
+        {% if current_user.role == "admin" %}
+            <hr>
+            <div class="container">
+                <h3>ЗАГРУЗКА И ОТОБРАЖЕНИЕ КАРТИНОК </h3><br>
+                <h2>Select a file to upload</h2>
+                <p>
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            <ul>
+                                {% for message in messages %}
+                                    <li>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endwith %}
+                </p>
+
+                {% if filename %}
+                    <div>
+                        <img src="{{ url_for("gifts_bp.display_image", filename=filename) }}">
+                    </div>
+                {% endif %}
+                <form method="post" enctype="multipart/form-data">
+                    <dl>
+                        <p>
+                            <input type="file" name="file" class="form-control" autocomplete="off" required>
+                        </p>
+                    </dl>
+                    <p>
+                        <input type="submit" value="Submit" class="btn btn-info">
+                    </p>
+                </form>
+
+
+                {% else %}
+                <div class="col"><h3>У вас недостаточно прав для просмотра данной страницы.</h3></div>
+            </div>
+        {% endif %}
+    {% endif %}
+{% endblock %}

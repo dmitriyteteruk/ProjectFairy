@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% block title %}
+    Елка
+{% endblock %}
+
+{% block content %}
+<style xmlns="http://www.w3.org/1999/html">
+    .block-tree {
+        font-family: Arial, "Helvetica Neue", sans-serif;
+        background-image: url("/static/images/tree.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        min-width: 200px;
+        min-height: 400px;
+        max-width: 800px;
+        max-height: 1000px;
+        margin: 0px auto;
+        position: relative;
+
+
+    }
+
+    .block-ball div {
+        min-width: 5%;
+        max-width: 10%;
+        min-height: 11.5%;
+        border-radius: 7%;
+        position: absolute;
+        z-index: 2;
+    }
+
+    .block-ball-1 {
+        top: 25%;
+        left: 46%;
+
+    }
+
+    .block-ball-2 {
+        top: 35%;
+        left: 50%;
+    }
+
+    .block-ball-3 {
+        top: 42%;
+        left: 42%;
+    }
+
+    .block-ball-4 {
+        top: 50%;
+        left: 54%;
+    }
+
+    .block-ball-5 {
+        top: 60%;
+        left: 38%;
+    }
+
+</style>
+    <br>
+{% if gifts|length < 1 %}
+
+    <div style="text-align: center">
+
+        <h4>Открытки для Деда Мороза</h4>
+        <p>На елке закончились шарики, а это значит, что для всех ребят Дед Мороз уже готовит подарки!</p>
+    </div>
+{% endif %}
+{% if gifts|length > 1 %}
+    <div style="text-align: center">
+        <h4>Открытки для Деда Мороза</h4>
+        <p>Для просмотра открытки кликните на изображение шарика на Елке.<br>
+            Затем нажмите кнопку "Подарить", чтобы снять открытку.</p>
+    </div>
+{% endif %}
+
+<div class="block-tree">
+
+        {% for gift in gifts %}
+        {% include 'includes/gifts_modals.html' %}
+       <!-- ШАР 1 -->
+        {% if gifts|length > 0 %}
+
+        <div class="block-ball">
+            <div class="block-ball-1">
+                <button style="background-color:transparent; border-color:transparent;"
+                        data-toggle="modal"
+                        data-target="#Model-PurchaseConfirm-{{ gifts[0].id }}">
+                    <img src="/static/images/ball.png" width="30px">
+                </button>
+            </div>
+        </div>
+            {% endif %}
+    {% if gifts|length > 1 %}
+        <!-- ШАР 2 -->
+        <div class="block-ball">
+            <div class="block-ball-2">
+                <button style="background-color:transparent; border-color:transparent;"
+                        data-toggle="modal"
+                        data-target="#Model-PurchaseConfirm-{{ gifts[1].id }}">
+                    <img src="/static/images/ball.png" width="30px">
+                </button>
+            </div>
+        </div>
+    {% endif %}
+    {% if gifts|length > 2 %}
+        <!-- ШАР 3 -->
+        <div class="block-ball">
+            <div class="block-ball-3">
+                <button style="background-color:transparent; border-color:transparent;"
+                        data-toggle="modal"
+                        data-target="#Model-PurchaseConfirm-{{ gifts[2].id }}">
+                    <img src="/static/images/ball.png" width="30px">
+                </button>
+            </div>
+        </div>
+    {% endif %}
+    {% if gifts|length > 3 %}
+        <!-- ШАР 4 -->
+        <div class="block-ball">
+            <div class="block-ball-4">
+                <button style="background-color:transparent; border-color:transparent;"
+                        data-toggle="modal"
+                        data-target="#Model-PurchaseConfirm-{{ gifts[3].id }}">
+                    <img src="/static/images/ball.png" width="30px">
+                </button>
+            </div>
+        </div>
+    {% endif %}
+    {% if gifts|length > 4 %}
+        <!-- ШАР 5 -->
+        <div class="block-ball">
+            <div class="block-ball-5">
+                <button style="background-color:transparent; border-color:transparent;"
+                        data-toggle="modal"
+                        data-target="#Model-PurchaseConfirm-{{ gifts[4].id }}">
+                    <img src="/static/images/ball.png" width="30px">
+                </button>
+            </div>
+        </div>
+    {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

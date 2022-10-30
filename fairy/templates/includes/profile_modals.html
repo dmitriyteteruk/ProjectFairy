@@ -1,0 +1,39 @@
+<!-- подключаем base шаблон -->
+{% extends 'base.html'%}
+
+{% block title %}
+Форма регистрации
+{% endblock %}
+
+{% block content %}
+<body>
+<div class="container">
+    <h4 class="h4 mb-3 text-center">Пожалуйста, заполните форму для регистрации на портале Фея</h4>
+
+    <form method="post" class="form-register">
+        <!-- защита от Cross Site Request Forgery -->
+        {{ form.hidden_tag() }}
+        {{ form.email_address.label() }}
+        {{ form.email_address(class="form-control", placeholder="Адрес электронной почты") }}
+        {{ form.first_name.label() }}
+        {{ form.first_name(class="form-control", placeholder="Имя") }}
+        {{ form.last_name.label() }}
+        {{ form.last_name(class="form-control", placeholder="Фамилия") }}
+        {{ form.phone.label() }}
+        {{ form.phone(class="form-control", placeholder="Телефон") }}
+        {{ form.password1.label() }}
+        {{ form.password1(class="form-control", placeholder="Введите пароль") }}
+        {{ form.password2.label() }}
+        {{ form.password2(class="form-control", placeholder="Введите пароль еще раз") }}
+
+        <div class="checkbox mb-3">
+          <h6>Уже есть учетная запись?</h6>
+          <a class="btn btn-sm btn-secondary" href="{{ url_for('users_bp.login_page')}}">Авторизация</a>
+        </div>
+
+        <br> {{ form.submit(class="btn btn-lg btn-block btn-primary")}}
+    </form>
+</div>
+</body>
+<!-- конец блока content -->
+{% endblock %}

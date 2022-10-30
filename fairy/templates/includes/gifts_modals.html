@@ -1,0 +1,33 @@
+<!-- Purchase - снять шарик -->
+<div class="modal fade" id="Model-PurchaseConfirm-{{ gift.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" style="max-width:800px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="ModalLabel">
+                    Открытка для Деда Мороза от {{ gift.kid.name }}
+                </h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">x</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST">
+                    {{ purchase_form.hidden_tag() }}
+                    <img style="max-width: 95%" src="{{ url_for("gifts_bp.display_image", filename=gift
+                    .postcard_url) }}">
+                    <br>
+                    <h4>Готовы подарить {{ gift.name }}?</h4><br>
+                    <h6>Нажимая кнопку Подарить вы снимаете открытку с Елки</h6><br>
+                    <input id="picked_gift" name="picked_gift" type="hidden" value="{{ gift.name }}">
+                    {{ purchase_form.submit(class="btn btn-outline-success btn-block") }}
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>

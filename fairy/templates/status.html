@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}
+    Текущий статус проектов
+{% endblock %}
+{% block content %}
+        {% if current_user.is_authenticated %}
+            {% if current_user.role == "admin" %}
+                <hr>
+                <div class="col">
+                <h3>Статус всех подарков</h3>
+                <table class="table">
+                    <tr>
+                        <th>Всего подарков</th>
+                        <th>На Елке</th>
+                        <th>Снято с Елки</th>
+                        <th>Заказано</th>
+                        <th>Доставлено на СВХ</th>
+                    </tr>
+                    <tr>
+                        <td>{{ gifts|count }}</td>
+                        <td>
+                            {{ gifts_on_tree|count }}
+                        </td>
+                        <td>
+                            {{ gifts_picked_by_santas|count }}
+                        </td>
+                        <td>
+                            {{ gifts_ordered|count }}
+                        </td>
+                        <td>
+                            {{ gifts_on_warehouse|count }}
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <hr>
+                <br>
+
+
+            {% else %}
+                <div class="col"><h3>У вас недостаточно прав для просмотра данной страницы.</h3></div>
+            {% endif %}
+        {% endif %}
+        </div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{%block title%}
+Добро пожаловать на портал Фея
+{%endblock%}
+{% block content %}
+    <br>
+    <div class="col">
+    {% for user in users %}
+        <h3 class="text-center">Привет, {{ current_user.first_name }}!</h3>
+    {% endfor %}
+    <p>Спасибо, что участвуешь в благотворительном проекте и помогаешь делать добрые дела!</p>
+    </div>
+        <div class="col">
+        <p>
+            Ниже доступна информация о текущих проектах, в которых можно поучаствовать. Для участия перейти на
+            страницу <a href="{{ url_for('gifts_bp.tree_page', page_num=1) }}">Елка</a>
+        </p>
+        </div>
+
+    <div class="col">
+    <table class="table">
+			<tr>
+				<th>Название</th>
+				<th>Описание</th>
+                <th>Сбор подарков до</th>
+                <th>Дата поездки</th>
+			</tr>
+			<!-- here is a for-loop to give us all the socks -->
+			{% for project in projects %}
+			<tr>
+				<td>{{ project.name }}</td>
+				<td>{{ project.description }}</td>
+                <td>
+                    {% if project.delivery_date == None %} Уточняется
+                    {% else %} {{ project.delivery_date }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if project.visit_date == None %} Уточняется
+                    {% else %} {{ project.visit_date }}
+                    {% endif %}
+                </td>
+			</tr>
+			{% endfor %}
+		</table>
+    </div>
+{% endblock %}

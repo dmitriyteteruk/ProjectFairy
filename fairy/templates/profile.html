@@ -1,0 +1,36 @@
+<!-- подключаем base шаблон -->
+{% extends 'base.html' %}
+
+{% block title %}
+    Форма обновления профиля
+{% endblock %}
+
+{% block content %}
+        <br>
+        <h4 class="h4 mb-3 text-center">Редактирования профиля</h4>
+        <form method="post" class="profile_update_form">
+            <!-- защита от Cross Site Request Forgery -->
+            {{ profile_update_form.hidden_tag() }}
+            <div class="row">
+                <div class="col-2">{{ profile_update_form.first_name.label }}</div>
+                <div class="col-10"><input class='form-control' name="first_name" value="{{ user.first_name }}"></div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-2">{{ profile_update_form.last_name.label }}</div>
+                <div class="col-10"><input class='form-control' name="last_name" value="{{ user.last_name }}"></div>
+            </div>
+               <br>
+            <div class="row">
+                <div class="col-2">{{ profile_update_form.email_address.label }}</div>
+                <div class="col-10"><input class='form-control' name="email_address" value="{{ user.email_address }}"></div>
+            </div>
+                           <br>
+            <div class="row">
+                <div class="col-2">{{ profile_update_form.phone.label }}</div>
+                <div class="col-10"><input class='form-control' name="phone" value="{{ user.phone }}"></div>
+            </div>
+            <br> {{ profile_update_form.submit(class="btn btn-lg btn-block btn-primary") }}
+        </form>
+    <!-- конец блока content -->
+{% endblock %}

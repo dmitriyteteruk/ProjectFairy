@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}
+    Мои подарки
+{% endblock %}
+{% block content %}
+    <div class="row" style="margin-top: 20px; margin-left: 20px">
+        <div class="col">
+            <h3>Мои подарки</h3>
+            <p>Для обновления статуса используйте выпадающее меню</p>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Ребенок</th>
+                    <th>Статус</th>
+                    <th>Обновить статус</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for gift in gifts %}
+                    {% include 'includes/owned_gifts_modals.html' %}
+                    <tr>
+                        <td>{{ gift.name }}</td>
+                        <td>
+                            {{ gift.kid.name }}
+                            {% if age_calculator(gift.kid.birthday) == 1 %}
+                                ({{ age_calculator(gift.kid.birthday) }} год)
+                            {% endif %}
+                            {% if 2 <= age_calculator(gift.kid.birthday) <= 4 %}
+                                ({{ age_calculator(gift.kid.birthday) }} года)
+                            {% endif %}
+                            {% if 5 <= age_calculator(gift.kid.birthday) <= 20 %}
+                                ({{ age_calculator(gift.kid.birthday) }} лет)
+                            {% endif %}
+                        </td>
+                        <td class="col-2">{% if gift.status == None %}
+                            На елке
+                        {% elif gift.status == 0 %}
+                            Снят
+                        {% elif gift.status == 1 %}
+                            Заказан
+                        {% elif gift.status == 2 %}
+                            Доставлен на СВХ
+                        {% elif gift.status == 3 %}
+                            Вручен ребенку
+                        {% endif %}
+                        </td>
+                        <td>
+                            <button class="btn btn-outline btn-success" data-toggle="modal"
+                                    data-target="#Model-StatusUpdate-{{ gift.id }}">Детали и статус
+                            </button>
+
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% block title %}
+    Подарки
+{% endblock %}
+
+{% block content %}
+        {% if current_user.is_authenticated %}
+            {% if current_user.role == "admin" %}
+
+                <hr>
+                <div class="col">
+                    <h3>Подарки для детей</h3>
+                    <table class="table">
+                        <tr>
+                            <th>Название</th>
+                            {#            <th>Описание</th>#}
+                            {#                        <th>Ссылка на открытку</th>#}
+                            <th>Имя ребенка</th>
+                            {#            <th>Проект</th>#}
+                            <th>Даритель (телефон)</th>
+                            <th>Текущий Статус</th>
+                            {#            <th>Статус обновлен</th>#}
+                            {#            <th>Файл открытки</th>#}
+                            <th>Действие</th>
+                        </tr>
+                        {% for gift in gifts.items %}
+                            <tr>
+                                <td>
+                                    {{ gift.name }}
+                                </td>
+                                <td>
+                                    {{ gift.kid.name }}
+                                    {% if age_calculator(gift.kid.birthday) == 1 %}
+                                        ({{ age_calculator(gift.kid.birthday) }} год)
+                                    {% elif 2 <= age_calculator(gift.kid.birthday) <= 4 %}
+                                        ({{ age_calculator(gift.kid.birthday) }} года)
+                                    {% elif 5 <= age_calculator(gift.kid.birthday) <= 20 %}
+                                        ({{ age_calculator(gift.kid.birthday) }} лет)
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if gift.santa_id == None %}
+                                        ---
+
+                                    {% else %}
+                                        {{ gift.santa.first_name }} {{ gift.santa.last_name }} ({{ gift.santa.phone }})
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if gift.status == None %}
+                                        <div style="color: white; background-color: #ec0d0d; text-align: center">На Елке
+                                        </div>
+                                    {% endif %}
+                                    {% if gift.status == 0 %}
+                                        <div style="color: black; background-color: orange; text-align: center">Снят с
+                                            Елки
+                                        </div>
+                                    {% endif %}
+                                    {% if gift.status == 1 %}
+                                        <div style="color: black; background-color: yellowgreen; text-align: center">
+                                            Заказан
+                                        </div>
+                                    {% endif %}
+                                    {% if gift.status == 2 %}
+                                        <div style="color: white; background-color: green; text-align: center">На СВХ
+                                        </div>
+                                    {% endif %}
+                                    {% if gift.status == 3 %}
+                                        Вручен ребенку
+                                    {% endif %}
+
+                                </td>
+
+                                <td>
+                    <span style="font-size: 18px;color: green;">
+                              <a href="/gift/edit/{{ gift.id }}">
+                                  <i class="fas fa-edit"></i>
+                              </a>
+                            </span>|&nbsp;
+                                    <span style="font-size: 18px;color: darkred;">
+                              <a href="/gift/delete/{{ gift.id }}">
+                                  <i class="fas fa-trash-alt"></i>
+                              </a>
+                            </span>
+                                </td>
+                            </tr>{% endfor %}
+
+
+                    </table>
+                    <div class="col"> {% for page in gifts.iter_pages(left_edge=3, right_edge=3, left_current=3,
+            right_current=3) %}
+                        {% if page %}
+                            <a class="btn btn-primary" href="{{ url_for('gifts_bp.tree_page', page_num=page) }}"> {{ page }}</a>
+                        {% endif %}
+                    {% endfor %}
+                    </div>
+                    <br>
+                    <div class="col">
+                        <a class="btn btn-primary" href="{{ url_for('gifts_bp.new_gift_page') }}">Добавить подарок</a>
+                    </div>
+                </div>
+                <br>
+
+
+            {% else %}
+                <div class="col"><h3>У вас недостаточно прав для просмотра данной страницы.</h3></div>
+            {% endif %}
+        {% endif %}
+
+{% endblock %}

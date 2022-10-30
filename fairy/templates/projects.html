@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}
+    Проекты
+{% endblock %}
+{% block content %}
+    {% if current_user.is_authenticated %}
+        {% if current_user.role == "admin" %}
+            <hr>
+            <div class="col">
+                <h3>Все проекты</h3>
+                <table class="table">
+                    <tr>
+                        <th>Название</th>
+                        <th>Дата доставки на СВХ</th>
+                        <th>Дата доставки детям</th>
+                        <th>Действие</th>
+                    </tr>
+                    {% for project in projects %}
+                        <tr>
+                            <td>{{ project.name }}</td>
+                            <td>
+                                {{ project.delivery_date.strftime('%d.%m.%Y') }}
+                            </td>
+                            <td>
+                                {{ project.visit_date.strftime('%d.%m.%Y') }}
+                            </td>
+                            <td>
+                               <span style="font-size: 18px;color: green;">
+                              <a href="/project/edit/{{ project.id }}">
+                                  <i class="fas fa-edit"></i>
+                              </a>
+                            </span>|&nbsp;
+                                <span style="font-size: 18px;color: darkred;">
+                              <a href="/project/delete/{{ project.id }}">
+                                  <i class="fas fa-trash-alt"></i>
+                              </a>
+                            </span>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+
+                </table>
+                <div class="col">
+                    <a class="btn btn-primary" href="{{ url_for('projects_bp.new_project_page') }}">Добавить
+                    проект</a></div>
+            </div>
+            <br>
+
+        {% else %}
+            <div class="col"><h3>У вас недостаточно прав для просмотра данной страницы.</h3></div>
+        {% endif %}
+    {% endif %}
+{% endblock %}
