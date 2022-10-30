@@ -57,7 +57,7 @@ def email_confirmation(token, expire_time=86400):
 def send_reset_email(user):
     token = user.get_reset_token()
     msg = Message(subject=app.config['FLASKY_MAIL_SUBJECT_PREFIX'] + ' - запрос на сброс пароля.',
-                  sender='santa@teteruk.com',
+                  sender=app.config['MAIL_USERNAME'],
                   recipients=[user.email_address])
     msg.body = f'''Для сброса вашего пароля на платформе Фея перейдите по следующей ссылке:
 {url_for('users_bp.reset_password_with_token', token=token, _external=True)}
