@@ -1,6 +1,7 @@
 #!/bin/bash
 #Purpose: Install Project Fairy
 #_START_#
+set -x
 
 #  update and upgrade Ubuntu packages
 sudo NEEDRESTART_MODE=a apt update -y && sudo NEEDRESTART_MODE=a  apt upgrade -y
@@ -205,7 +206,6 @@ cd ~/$PROJECT_FOLDER
 # Delete unused files
 rm -rf .git/ .idea/ /venv /__pycache__
 
-read _
 
 # Install required libraries for Flask and MySQL
 sudo NEEDRESTART_MODE=a apt-get install python3-dev default-libmysqlclient-dev build-essential -y
@@ -213,7 +213,7 @@ sudo NEEDRESTART_MODE=a apt-get install python3-dev default-libmysqlclient-dev b
 # Configuring Flask App
 # create and activate VENV
 python3 -m venv ~/$PROJECT_FOLDER/venv
-source ~/$PROJECT_FOLDER/venv/bin/activate
+. ~/$PROJECT_FOLDER/venv/bin/activate
 read _
 
 # Install all project requirements
@@ -222,7 +222,6 @@ read _
 
 # Create config file with credentials for Flask App
 sudo touch /etc/config.json
-read _
 sudo tee -a /etc/config.json > /dev/null <<EOF
 {
         "MAIL_USERNAME": "$MAIL_USERNAME",
@@ -245,7 +244,6 @@ read _
 
 # Remove default Nginx config file
 sudo rm /etc/nginx/sites-enabled/default
-read _
 
 # Create Nginx config for Flask app
 sudo touch /etc/nginx/sites-enabled/flask
@@ -291,7 +289,6 @@ EOF
 sudo NEEDRESTART_MODE=a apt install supervisor -y
 read _
 sudo touch /etc/supervisor/conf.d/flask.conf
-read _
 sudo tee -a /etc/supervisor/conf.d/flask.conf > /dev/null <<EOF
 [program:flask]
 directory=/home/ubuntu/$PROJECT_FOLDER
@@ -306,7 +303,6 @@ stdout_logfile=/var/log/flask/flask.out.log
 EOF
 
 sudo mkdir -p /var/log/flask
-read _
 sudo touch /var/log/flask/flask.err.log
 sudo touch /var/log/flask/flask.out.log
 read _
