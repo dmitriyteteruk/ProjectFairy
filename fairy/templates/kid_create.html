@@ -26,6 +26,7 @@
 
                         <div class="col-10">
                             <select name="house_id" class="form-control">
+                                <option selected="selected" value="">-----</option>
                                 {% for house in list_of_houses %}
                                     <option value="{{ house.id }}">{{ house.short_name }}</option>
                                 {% endfor %}

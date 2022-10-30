@@ -327,7 +327,7 @@ sudo ufw allow http/tcp
 echo "y" | sudo ufw enable
 read _
 
-echo "Congratulations! Installation platform Fairy has been installed!"
-echo "Please vitis http://$PUBLIC_IP_ADDRESS/ or http://$LOCAL_IP_ADDRESS/ web page and use password reset function
+echo "Congratulations! Platform Fairy has been installed!"
+echo "Please vitis http://$PUBLIC_IP_ADDRESS or http://$LOCAL_IP_ADDRESS web page and use password reset function
 with $FLASKY_ADMIN."
 ###__END__###

@@ -27,8 +27,8 @@ sleep 2
 sudo apt-get remove supervisor -y
 sudo apt-get purge supervisor -y
 
-sudo rm -rf /etc/mysql /var/lib/mysql /var/lib/mysql-keyring /var/lib/mysql-files /etc/config.json
-sudo rm -rf /etc/nginx /etc/supervisor/conf.d/flask.conf /var/log/flask
+sudo rm -r /etc/mysql /var/lib/mysql /var/lib/mysql-keyring /var/lib/mysql-files /etc/config.json
+sudo rm -r /etc/nginx /var/log/flask /etc/supervisor
 
 sudo apt-get remove python3-venv -y
 sudo apt-get purge python3-venv -y
@@ -36,7 +36,7 @@ sudo apt-get purge python3-venv -y
 sudo apt-get remove python3-pip -y
 sudo apt-get purge python3-pip -y
 
-sudo rm -rf ~/ProjectFairy
+sudo rm -r ~/ProjectFairy
 
 sudo apt-get autoremove -y
 sudo apt-get autoclean -y

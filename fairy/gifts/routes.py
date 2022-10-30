@@ -38,7 +38,10 @@ def new_gift_page():
     if current_user.role == "admin":
         gift_form = GiftForm()
         gift_form.house.choices = [(house.id, house.short_name) for house in House.query.all()]
+        gift_form.house.choices.insert(0, (0, "-----"))
+        print(gift_form.house.choices)
         gift_form.project_id.choices = [(project.id, project.name) for project in Project.query.all()]
+        gift_form.project_id.choices.insert(0, (0, "-----"))
         basedir = os.path.abspath(os.path.dirname(__file__))
         basedir = os.chdir(basedir)
         basedir = os.chdir('../')
