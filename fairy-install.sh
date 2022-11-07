@@ -22,8 +22,10 @@ sudo systemctl start mysql.service
 
 sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '$MYSQL_ROOT_PASSWORD'; \q"
 
+sudo NEEDRESTART_MODE=a  apt install python3 -y && sudo NEEDRESTART_MODE=a  apt install git -y
 sudo NEEDRESTART_MODE=a  apt install aptitude -y
 sudo NEEDRESTART_MODE=a  aptitude -y install expect
+
 
 SECURE_MYSQL=$(expect -c "
 set timeout 10
