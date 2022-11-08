@@ -19,8 +19,7 @@ sudo apt-get purge ufw -y
 
 sudo systemctl stop nginx
 sleep 5
-sudo apt-get remove nginx -y
-sudo apt-get purge nginx -y
+sudo apt-get --purge remove nginx* -y
 
 sudo systemctl stop supervisor
 sleep 2
@@ -35,6 +34,9 @@ sudo apt-get purge python3-venv -y
 
 sudo apt-get remove python3-pip -y
 sudo apt-get purge python3-pip -y
+
+sudo apt-get remove git -y
+sudo apt-get purge git -y
 
 sudo rm -r ~/ProjectFairy
 
