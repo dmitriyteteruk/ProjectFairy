@@ -19,27 +19,29 @@
                 <br>
                 <div class="row">
                     <div class="col-2"> {{ project_form.description.label }}</div>
-                    <div class="col-10"><input class='form-control' name="description" value="{{ project.description }}"></div>
+                    <div class="col-10"><textarea name="description" class="form-control" rows="10" wrap="soft">{{ project
+                    .description }}</textarea></div>
                 </div>
-                                <br>
+                <br>
                 <div class="row">
                     <div class="col-2"> {{ project_form.delivery_date.label }}</div>
                     <div class="col-10"><input type="date" class='form-control' name="delivery_date" value="{{ project
                     .delivery_date }}"></div>
                 </div>
-                                                <br>
+                <br>
                 <div class="row">
                     <div class="col-2"> {{ project_form.visit_date.label }}</div>
-                      <div class="col-10"><input type="date" class='form-control' name="visit_date" value="{{ project.visit_date
-                              }}"></div>
+                    <div class="col-10"><input type="date" class='form-control' name="visit_date"
+                                               value="{{ project.visit_date }}"></div>
                 </div>
-                                                <br>
-                            <div class="row">
+                <br>
+                <div class="row">
                     <div class="col" style="text-align: right">
                         {{ project_form.submit(class="btn btn-primary", value='Сохранить') }}
-                        <a class="btn btn-primary" href="{{ url_for('projects_bp.projects_page', page_num=1)
-                                }}">Отмена</a>
-                </div> </div>
+                        <a class="btn btn-primary"
+                           href="{{ url_for('projects_bp.projects_page', page_num=1) }}">Отмена</a>
+                    </div>
+                </div>
 
 
             </form>
