@@ -204,7 +204,7 @@ def tree_page():
     # Purchase item logic
     if request.method == "POST":
         picked_gift = request.form.get('picked_gift')
-        p_gift_object = Gift.query.filter_by(name=picked_gift).first()
+        p_gift_object = Gift.query.filter_by(id=picked_gift).first()
         if p_gift_object:
             # нижеследующий if реализует проверку наличия подарка в момент нажатия кнопки
             if p_gift_object.santa_id is None:
