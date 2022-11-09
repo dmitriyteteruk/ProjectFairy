@@ -17,35 +17,34 @@
             страницу <a href="{{ url_for('gifts_bp.tree_page', page_num=1) }}">Елка</a>
         </p>
     </div>
-
-    <div class="col">
-        <table class="table">
-            <tr>
-                <th>Название</th>
-                <th>Описание</th>
-                <th>Сбор подарков до</th>
-                <th>Дата поездки</th>
-            </tr>
-            <!-- here is a for-loop to give us all the socks -->
-            {% for project in projects %}
-                <tr>
-                    <td>{{ project.name }}</td>
-                    <td>
-                       <pre style="font-family: 'Segoe UI', sans-serif; font-size: 1rem;">{{ project.description
-                        }}</pre>
-                    </td>
-                    <td>
-                        {% if project.delivery_date == None %} Уточняется
-                        {% else %} {{ project.delivery_date.strftime('%d.%m.%Y') }}
-                        {% endif %}
-                    </td>
-                    <td>
-                        {% if project.visit_date == None %} Уточняется
-                        {% else %} {{ project.visit_date.strftime('%d.%m.%Y') }}
-                        {% endif %}
-                    </td>
-                </tr>
-            {% endfor %}
-        </table>
+    <div class="container">
+        <hr>
+        <div class="row" style="font-weight: bold">
+            <div class="col-2">Название</div>
+            <div class="col-6">Описание</div>
+            <div class="col-2">Сбор подарков до</div>
+            <div class="col-2">Дата поездки</div>
+        </div>
+            <hr>
+        <!-- here is a for-loop to give us all projects -->
+        {% for project in projects %}
+        <div class="row">
+            <div class="col-2">{{ project.name }}</div>
+            <div class="col-6"><pre
+                    style="font-family: 'Segoe UI', sans-serif; font-size: 1rem;">{{ project.description }}</pre>
+            </div>
+            <div class="col-2">
+                {% if project.delivery_date == None %} Уточняется
+                {% else %} {{ project.delivery_date.strftime('%d.%m.%Y') }}
+                {% endif %}
+            </div>
+            <div class="col-2">
+                {% if project.visit_date == None %} Уточняется
+                {% else %} {{ project.visit_date.strftime('%d.%m.%Y') }}
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+        <hr>
     </div>
 {% endblock %}
