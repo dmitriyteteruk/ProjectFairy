@@ -19,8 +19,8 @@
                     <br>
                     <h4>Готовы подарить {{ gift.name }}?</h4><br>
                     <h6>Нажимая кнопку Подарить вы снимаете открытку с Елки</h6><br>
-                    <input id="picked_gift" name="picked_gift" type="hidden" value="{{ gift.name }}">
-                    {{ purchase_form.submit(class="btn btn-outline-success btn-block") }}
+                    <input id="picked_gift" name="picked_gift" type="hidden" value="{{ gift.id }}">
+                    {{ purchase_form.submit(class="btn btn-success btn-block") }}
                 </form>
             </div>
             <div class="modal-footer">
