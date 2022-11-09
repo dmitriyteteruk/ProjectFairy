@@ -213,7 +213,7 @@ def tree_page():
                     msg = Message(
                         subject='Вы сняли открытку с подарком ' + p_gift_object.name,
                         sender=app.config.get('MAIL_USERNAME'),
-                        recipients=[current_user.email_address, 'dmitriy.teteruk@gmail.com'],
+                        recipients=[current_user.email_address],
                         body='Вы сняли открытку с подарком ' + p_gift_object.name + ' для ' + p_gift_object.kid.name)
                     mail.send(msg)
 

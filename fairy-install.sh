@@ -237,6 +237,7 @@ EOF
 
 # Export flask app
 export FLASK_APP=~/$PROJECT_FOLDER/run.py
+sudo mkdir ~/$PROJECT_FOLDER/fairy/static/uploads
 
 ## ------------------------- BUG при повторной установке ------------- #№
 ## Не создаются файлы NGINX ###
@@ -328,6 +329,8 @@ sudo ufw allow 443
 sudo ufw allow http/tcp
 echo "y" | sudo ufw enable
 read _
+
+
 
 echo "Congratulations! Platform Fairy has been installed!"
 echo "Please vitis http://$PUBLIC_IP_ADDRESS or http://$LOCAL_IP_ADDRESS web page and use password reset function
