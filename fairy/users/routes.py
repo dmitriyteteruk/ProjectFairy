@@ -162,7 +162,7 @@ def all_my_gifts_page():
             msg = Message(
                 subject='Статус подарка обновлен ' + p_gift_object.name,
                 sender=app.config.get('MAIL_USERNAME'),
-                recipients=[current_user.email_address, 'dmitriy.teteruk@gmail.com'],
+                recipients=[current_user.email_address],
                 body='Статус подарка ' + p_gift_object.name + ' обновлен')
             mail.send(msg)
 
