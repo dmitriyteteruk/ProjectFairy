@@ -29,15 +29,15 @@
 			{% for project in projects %}
 			<tr>
 				<td>{{ project.name }}</td>
-				<td>{{ project.description }}</td>
+				<td><pre>{{ project.description }}</pre></td>
                 <td>
                     {% if project.delivery_date == None %} Уточняется
-                    {% else %} {{ project.delivery_date }}
+                    {% else %} {{ project.delivery_date.strftime('%d.%m.%Y') }}
                     {% endif %}
                 </td>
                 <td>
                     {% if project.visit_date == None %} Уточняется
-                    {% else %} {{ project.visit_date }}
+                    {% else %} {{ project.visit_date.strftime('%d.%m.%Y') }}
                     {% endif %}
                 </td>
 			</tr>

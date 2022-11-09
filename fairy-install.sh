@@ -206,7 +206,7 @@ git clone https://github.com/dmitriyteteruk/ProjectFairy.git
 export PROJECT_FOLDER="ProjectFairy"
 cd ~/$PROJECT_FOLDER
 # Delete unused files
-rm -rf .git/ .idea/ /venv /__pycache__
+rm -rf .idea/ /venv /__pycache__
 
 
 # Install required libraries for Flask and MySQL
