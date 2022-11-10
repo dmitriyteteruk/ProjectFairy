@@ -3,7 +3,7 @@ import datetime
 from datetime import datetime
 
 from flask_login import current_user
-from flask_wtf import FlaskForm
+from flask_wtf import FlaskForm, RecaptchaField
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import Length, EqualTo, Email, DataRequired, ValidationError, Regexp
 from fairy.models import Santa
@@ -22,6 +22,7 @@ class RegisterForm(FlaskForm):
     password1 = PasswordField(label='Пароль:', validators=[Length(min=6), DataRequired()])
     password2 = PasswordField(label='Подтвердите пароль:', validators=[EqualTo('password1'), DataRequired()])
     submit = SubmitField(label='Зарегистрироваться')
+    recaptcha = RecaptchaField()
 
     # проверка на наличие в базе адреса почты
     def validate_email_address(self, email_address_to_check):
