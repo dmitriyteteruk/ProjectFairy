@@ -26,3 +26,6 @@ class Config:
     UPLOAD_FOLDER = 'static/uploads/'
     MAX_CONTENT_LENGTH = 1024 * 1024  # максимальный размер файла 1МБ
     ALLOWED_EXTENSIONS = {'jpg', 'jpeg', 'png'}
+
+    RECAPTCHA_PUBLIC_KEY = config.get('RECAPTCHA_PUBLIC_KEY')
+    RECAPTCHA_PRIVATE_KEY = config.get('RECAPTCHA_PRIVATE_KEY')
