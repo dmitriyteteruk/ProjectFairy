@@ -15,6 +15,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config.from_object(Config)
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
+app.config['RECAPTCHA_PUBLIC_KEY'] = 'RECAPTCHA_PUBLIC_KEY'
+app.config['RECAPTCHA_PRIVATE_KEY'] = 'RECAPTCHA_PRIVATE_KEY'
+
 login_manager = LoginManager(app)
 login_manager.login_view = "users_bp.login_page"
 login_manager.login_message_category = "info"
