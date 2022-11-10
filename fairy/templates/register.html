@@ -6,65 +6,74 @@
 {% endblock %}
 
 {% block content %}
-<br>
-        <h4 class="h4 mb-3 text-center">Пожалуйста, заполните форму для регистрации на портале Фея</h4>
+    <br>
+    <h4 class="h4 mb-3 text-center">Пожалуйста, заполните форму для регистрации на портале Фея</h4>
 
-        <form method="post" class="form-register">
-            <!-- защита от Cross Site Request Forgery -->
-            {{ form.hidden_tag() }}
-            <div class="row">
-                <div class="col-3">
-                    {{ form.email_address.label() }}
-                </div>
-                <div class="col-9">
-                    {{ form.email_address(class="form-control", placeholder="Адрес электронной почты") }}
-                </div>
-                <br><br>
-                <div class="col-3">
-                    {{ form.first_name.label() }}
-                </div>
-                <div class="col-9">
-                    {{ form.first_name(class="form-control", placeholder="Имя") }}
-                </div>
-                <br><br>
-                <div class="col-3">
-                    {{ form.last_name.label() }}
-                </div>
-                <div class="col-9">
-                    {{ form.last_name(class="form-control", placeholder="Фамилия") }}
-                </div>
-                <br><br>
-                <div class="col-3">
-                    {{ form.phone.label() }}
-                </div>
-                <div class="col-9">
-                    {{ form.phone(class="form-control", placeholder="Телефон") }}
-                </div>
-                <br><br>
-                <div class="col-3">
-                    {{ form.password1.label() }}
-                </div>
-               <div class="col-9">
-                   {{ form.password1(class="form-control", placeholder="Введите пароль") }}
-               </div>
-                <br><br>
-                <div class="col-3">
-                    {{ form.password2.label() }}
-                </div>
-                <div class="col-9">
-                     {{ form.password2(class="form-control", placeholder="Введите пароль еще раз") }}
-                </div>
-
+    <form method="post" class="form-register">
+        <!-- защита от Cross Site Request Forgery -->
+        {{ form.hidden_tag() }}
+        <div class="row">
+            <div class="col-3">
+                {{ form.email_address.label() }}
             </div>
-            <br>
-
-
-             {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
-            <br>
-            <div class="checkbox mb-3 text-center">
-                <h6>Уже есть учетная запись?</h6>
-                <a class="btn btn-sm btn-secondary" href="{{ url_for('users_bp.login_page') }}">Авторизация</a>
+            <div class="col-9">
+                {{ form.email_address(class="form-control", placeholder="Адрес электронной почты") }}
             </div>
-        </form>
+            <br><br>
+            <div class="col-3">
+                {{ form.first_name.label() }}
+            </div>
+            <div class="col-9">
+                {{ form.first_name(class="form-control", placeholder="Имя") }}
+            </div>
+            <br><br>
+            <div class="col-3">
+                {{ form.last_name.label() }}
+            </div>
+            <div class="col-9">
+                {{ form.last_name(class="form-control", placeholder="Фамилия") }}
+            </div>
+            <br><br>
+            <div class="col-3">
+                {{ form.phone.label() }}
+            </div>
+            <div class="col-9">
+                {{ form.phone(class="form-control", placeholder="Телефон") }}
+            </div>
+            <br><br>
+            <div class="col-3">
+                {{ form.password1.label() }}
+            </div>
+            <div class="col-9">
+                {{ form.password1(class="form-control", placeholder="Введите пароль") }}
+            </div>
+            <br><br>
+            <div class="col-3">
+                {{ form.password2.label() }}
+            </div>
+            <div class="col-9">
+                {{ form.password2(class="form-control", placeholder="Введите пароль еще раз") }}
+            </div>
+            <br><br>
+
+            <div class="col-3">
+            Защита от ботов:
+            </div>
+                        <div class="col-4">
+                {{ form.recaptcha }}
+            </div>
+           <div class="col">
+                {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+        <div class="checkbox mb-3 text-center"><br>
+            Уже есть учетная запись?&nbsp;&nbsp;<a class="btn btn-sm btn-secondary"
+                                                      href="{{ url_for('users_bp.login_page') }}">
+                Авторизация</a>
+
+        </div>
+            </div>
+        </div>
+
+
+    </form>
     <!-- конец блока content -->
 {% endblock %}

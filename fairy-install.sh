@@ -7,12 +7,12 @@ set -x
 sudo NEEDRESTART_MODE=a apt update -y && sudo NEEDRESTART_MODE=a  apt upgrade -y
 
 # Generating password for MySQL ROOT user
-export MYSQL_ROOT_PASSWORD=`date +%s | sha256sum | base64 | head -c 16`
+export MYSQL_ROOT_PASSWORD=`date +%s | sha256sum | base64 | head -c 30`
 
 # Generating username and password for standard user
 export MYSQL_USER_NAME="mysql_user"
 
-export MYSQL_USER_PASSWORD=`date +%m | sha256sum | base64 | head -c 16`
+export MYSQL_USER_PASSWORD=`date +%m | sha256sum | base64 | head -c 30`
 
 # install MySQL package
 sudo NEEDRESTART_MODE=a  apt install mysql-server -y
@@ -63,8 +63,8 @@ export SQLALCHEMY_DATABASE_URI="mysql://$MYSQL_USER_NAME:$MYSQL_USER_PASSWORD@lo
 sudo NEEDRESTART_MODE=a aptitude -y purge expect
 
 #  Generating secrets for Flask App
-export SECRET_KEY=`date +%ss | sha256sum | base64 | head -c 16`
-export SECRET_KEY_FOR_TOKEN=`date +%mm | sha256sum | base64 | head -c 16`
+export SECRET_KEY=`date +%ss | sha256sum | base64 | head -c 30`
+export SECRET_KEY_FOR_TOKEN=`date +%mm | sha256sum | base64 | head -c 30`
 
 #  Mail Settings setup
 echo "Please add required information for your SMTP server."
