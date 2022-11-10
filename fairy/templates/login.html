@@ -6,42 +6,55 @@
 
 {% block content %}
     <br>
-     <h4 class="h4 mb-3 text-center">Введите адрес электронной почты и пароль для авторизации</h4>
+    <h4 class="h4 mb-3 text-center">Введите адрес электронной почты и пароль для авторизации</h4>
 
-        <form method="post">
-            <!-- защита от Cross Site Request Forgery -->
-            {{ form.hidden_tag() }}
-            <div class="row">
-                <div class="col-3">
-                    {{ form.email_address.label() }}
-                </div>
-                <div class="col-9">
-                    {{ form.email_address(class="form-control") }}
-                </div>
-                <br><br>
-                <div class="col-3">
-                    {{ form.password.label() }}
-                </div>
-                <div class="col-9">
-                    {{ form.password(class="form-control") }}
-                </div>
-                <br><br>
-                <div class="col-12">
-                    {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
-                </div>
-            </div>
-        </form>
-        <br>
+    <form method="post">
+        <!-- защита от Cross Site Request Forgery -->
+        {{ form.hidden_tag() }}
         <div class="row">
-            <div class="col-6 text-center">
-                <h6>Еще нет учетной записи?</h6>
-                <a class="btn btn-sm btn-success" href="{{ url_for('users_bp.register_page') }}">Регистрация</a>
+            <div class="col-3">
+                {{ form.email_address.label() }}
             </div>
-            <div class="col-6 text-center">
-                <h6>Забыли пароль?</h6>
-                <a class="btn btn-sm btn-danger" href="{{ url_for('utils_bp.request_reset_password') }}">Сбросить
-                    пароль</a>
+            <div class="col-9">
+                {{ form.email_address(class="form-control") }}
             </div>
+            <br><br>
+            <div class="col-3">
+                {{ form.password.label() }}
+            </div>
+            <div class="col-9">
+                {{ form.password(class="form-control") }}
+            </div>
+            <br><br>
+            <div class="col-3">
+            Защита от ботов:
+            </div>
+            <div class="col-3" style="transform:scale(0.75); transform-origin:0 0">
+                {{ form.recaptcha }}
+            </div>
+            <div class="col-12">
+                {{ form.submit(class="btn btn-lg btn-block btn-primary") }}</div>
+
+        <div class="col-6 text-center">
+            <h6>Еще нет учетной записи?</h6>
+            <a class="btn btn-sm btn-success" href="{{ url_for('users_bp.register_page') }}">Регистрация</a>
+        </div>
+        <div class="col-6 text-center">
+            <h6>Забыли пароль?</h6>
+            <a class="btn btn-sm btn-danger" href="{{ url_for('utils_bp.request_reset_password') }}">Сбросить
+                пароль</a>
         </div>
 
+
+            </div>
+
+        </div>
+    </form>
+    <br>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script>
+        function onSubmit(token) {
+            document.getElementById("demo-form").submit();
+        }
+    </script>
 {% endblock %}

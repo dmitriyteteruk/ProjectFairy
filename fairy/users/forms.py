@@ -83,6 +83,7 @@ class LoginForm(FlaskForm):
     email_address = StringField(label='Email:', validators=[DataRequired()])
     password = PasswordField(label='Пароль:', validators=[DataRequired()])
     submit = SubmitField(label='Войти')
+    recaptcha = RecaptchaField()
 
 
 # форма запрос сброса пароля
@@ -93,6 +94,7 @@ class RequestResetPasswordForm(FlaskForm):
                                             DataRequired(message='Поле не может быть пустым.'),
                                             Length(max=60, message='Максимальная длина адреса почты 60 символов.')])
     submit = SubmitField(label='Сбросить пароль')
+    recaptcha = RecaptchaField()
 
     def validate_email(self, email_address):
         user = Santa.query.filter_by(email_address=email_address.data).first()
@@ -105,3 +107,4 @@ class ResetPasswordForm(FlaskForm):
     password1 = PasswordField(label='Пароль:', validators=[Length(min=6), DataRequired()])
     password2 = PasswordField(label='Подтвердите пароль:', validators=[EqualTo('password1'), DataRequired()])
     submit = SubmitField(label='Сохранить новый пароль')
+    recaptcha = RecaptchaField()

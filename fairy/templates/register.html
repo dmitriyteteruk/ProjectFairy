@@ -57,19 +57,19 @@
             <br><br>
 
             <div class="col-3">
-            Защита от ботов:
+                Защита от ботов:
             </div>
-                        <div class="col-4">
+            <div class="col-4" style="transform:scale(0.75); transform-origin:0 0">
                 {{ form.recaptcha }}
             </div>
-           <div class="col">
+            <div class="col">
                 {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
-        <div class="checkbox mb-3 text-center"><br>
-            Уже есть учетная запись?&nbsp;&nbsp;<a class="btn btn-sm btn-secondary"
-                                                      href="{{ url_for('users_bp.login_page') }}">
-                Авторизация</a>
+                <div class="checkbox mb-3 text-center"><br>
+                    Уже есть учетная запись?&nbsp;&nbsp;<a class="btn btn-sm btn-success btn-secondary"
+                                                           href="{{ url_for('users_bp.login_page') }}">
+                        Авторизация</a>
 
-        </div>
+                </div>
             </div>
         </div>
 
