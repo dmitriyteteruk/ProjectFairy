@@ -31,42 +31,42 @@
                 <br>
                 <div class="row">
                     <div class="col-2"> {{ project_form.visit_date.label }}</div>
-                    <div class="col-10"><input type="date" class='form-control' name="visit_date"
+                    <div class="col-10"><input type="date" class="form-control" name="visit_date"
                                                value="{{ project.visit_date }}"></div>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-2"> {{ project_form.delivery_address.label }}</div>
                     <div class="col-10">
-                        <input name="delivery_address" class='form-control' value="{{ project_form.delivery_address }}">
+                        <input class="form-control" name="delivery_address" value="{{ project.delivery_address }}">
                     </div>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-2"> {{ project_form.contact_person.label }}</div>
                     <div class="col-10">
-                    <input name="contact_person" class='form-control' value="{{ project_form.contact_person }}">
+                    <input class="form-control" name="contact_person"  value="{{ project.contact_person }}">
                     </div>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-2"> {{ project_form.phone.label }}</div>
                     <div class="col-10">
-                        <input name="phone" class='form-control' value="{{ project_form.phone }}">
+                        <input name="phone" class="form-control" value="{{ project.phone }}">
                     </div>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-2"> {{ project_form.pickup_point_address_1.label }}</div>
                     <div class="col-10">
-                        <input name="pickup_point_address_1" class='form-control' value="{{ project_form.pickup_point_address_1 }}">
+                        <input name="pickup_point_address_1" class="form-control" value="{{ project.pickup_point_address_1 }}">
                     </div>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-2"> {{ project_form.pickup_point_address_2.label }}</div>
                     <div class="col-10">
-                        <input name="pickup_point_address_2" class='form-control' value="{{ project_form
+                        <input name="pickup_point_address_2" class="form-control" value="{{ project
                         .pickup_point_address_2 }}">
                     </div>
                 </div>
