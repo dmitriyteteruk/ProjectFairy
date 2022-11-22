@@ -69,7 +69,6 @@ def project_edit(id):
                     project.phone = request.form['phone']
                     project.pickup_point_address_1 = request.form['pickup_point_address_1']
                     project.pickup_point_address_2 = request.form['pickup_point_address_2']
-
                     db.session.commit()
                     flash(f'Данные о проекте {project.name} успешно сохранены.', category='success')
                     return redirect(url_for('projects_bp.projects_page'))
