@@ -7,9 +7,14 @@
 2. Закажите его с доставкой на СВХ (см. информацию ниже) или привезите его на адрес СВХ самостоятельно
 3. Не забудьте изменить статус подарка в разделе "Мои подарки"
 
+{{ gift.project.description }}
+
 Крайний срок доставки подарка на СВХ: {{ gift.project.delivery_date.strftime('%d.%m.%Y') }}
-Варианты доставки для Озон и Вайлдберриз:
-    {{ gift.project.description }}
+Адрес для доставки: {{ gift.project.delivery_address }}
+Контактное лицо: {{ gift.project.contact_person }}
+Телефон: {{ gift.project.phone }}
+Адрес точки самовывоза Ozon: {{ gift.project.pickup_point_address_1 }}
+Адрес точки самовывоза Wildberries: {{ gift.project.pickup_point_address_2 }}
 
 С уважением,
 Команда проекта Фея

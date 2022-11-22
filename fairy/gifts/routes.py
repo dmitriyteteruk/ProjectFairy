@@ -210,19 +210,12 @@ def tree_page():
             if p_gift_object.santa_id is None:
                 p_gift_object.assign_ownership(current_user)
                 with app.app_context():
-                    # msg = Message(
-                    #     subject='Вы сняли открытку с подарком ' + p_gift_object.name,
-                    #     sender=app.config.get('MAIL_USERNAME'),
-                    #     recipients=[current_user.email_address],
-                    #     body='Вы сняли открытку с подарком ' + p_gift_object.name + ' для ' + p_gift_object.kid.name)
-                    # mail.send(msg)
-                    subject = 'Вы сняли открытку  с подарком ' + p_gift_object.name + ' для ' + p_gift_object.kid.name
+                    subject = 'Вы сняли открытку с подарком ' + p_gift_object.name + ' для ' + p_gift_object.kid.name
                     send_email(current_user.email_address,
                                subject,
                                'mail/gift_picked',
                                gift=p_gift_object,
                                user=current_user)
-
                 flash(f'Поздравляем! Вы успешно сняли шарик! {p_gift_object.kid.name} теперь не останется без '
                       f'подарка!',
                       category='success')

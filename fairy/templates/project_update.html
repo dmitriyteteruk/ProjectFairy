@@ -36,6 +36,31 @@
                 </div>
                 <br>
                 <div class="row">
+                    <div class="col-2"> {{ project_form.delivery_address.label }}</div>
+                    <div class="col-10">{{ project_form.delivery_address(class='form-control') }}</div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-2"> {{ project_form.contact_person.label }}</div>
+                    <div class="col-10">{{ project_form.contact_person(class='form-control') }}</div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-2"> {{ project_form.phone.label }}</div>
+                    <div class="col-10">{{ project_form.phone(class='form-control') }}</div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-2"> {{ project_form.pickup_point_address_1.label }}</div>
+                    <div class="col-10">{{ project_form.pickup_point_address_1(class='form-control') }}</div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-2"> {{ project_form.pickup_point_address_2.label }}</div>
+                    <div class="col-10">{{ project_form.pickup_point_address_2(class='form-control') }}</div>
+                </div>
+                <br>
+                <div class="row">
                     <div class="col" style="text-align: right">
                         {{ project_form.submit(class="btn btn-primary", value='Сохранить') }}
                         <a class="btn btn-primary"

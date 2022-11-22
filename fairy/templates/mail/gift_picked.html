@@ -8,9 +8,23 @@
 </ol>
 </p>
 <p>
-    <b>Крайний срок доставки подарка на СВХ</b>: {{ gift.project.delivery_date.strftime('%d.%m.%Y') }}<br>
-    <b>Варианты доставки для Озон и Вайлдберриз:</b><br>
-    {{ gift.project.description }}
+        {{ gift.project.description }}
+</p>
+<p>
+    Крайний срок доставки подарка на СВХ: <b>{{ gift.project.delivery_date.strftime('%d.%m.%Y') }}</b>
+    <br>
+    Адрес для доставки: <b>{{ gift.project.delivery_address }}</b>
+    <br>
+    Контактное лицо: <b>{{ gift.project.contact_person }}</b>
+    <br>
+    Телефон: <b>{{ gift.project.phone }}</b>
+    <br>
+    Если служба доставки невозможна, то можно заказать подарок в нижеследующий пункт самовывоза:
+    <br>
+    Адрес точки самовывоза Ozon: <b>{{ gift.project.pickup_point_address_1 }}</b>
+    <br>
+    Адрес точки самовывоза Wildberries: <b>{{ gift.project.pickup_point_address_2 }}</b>
+    <br>
 </p>
 
 <p>С уважением,</p>
