@@ -1,7 +1,7 @@
 # fairy/projects/forms.py
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, DateField, TextAreaField
-from wtforms.validators import Length, DataRequired
+from wtforms.validators import Length, DataRequired, Regexp
 
 
 # форма проекта
