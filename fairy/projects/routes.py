@@ -32,7 +32,12 @@ def new_project_page():
                     name=project_form.name.data,
                     description=project_form.description.data,
                     delivery_date=project_form.delivery_date.data,
-                    visit_date=project_form.visit_date.data)
+                    visit_date=project_form.visit_date.data,
+                    delivery_address=project_form.delivery_address,
+                    contact_person=project_form.contact_person,
+                    phone=project_form.phone,
+                    pickup_point_address_1=project_form.pickup_point_address_1,
+                    pickup_point_address_2=project_form.pickup_point_address_2)
                 db.session.add(new_project)
                 db.session.commit()
                 flash(f'Проект {new_project.name} успешно добавлен!', category='success')
@@ -59,6 +64,11 @@ def project_edit(id):
                     project.description = request.form['description']
                     project.delivery_date = request.form['delivery_date']
                     project.visit_date = request.form['visit_date']
+                    project.delivery_address = request.form['delivery_address']
+                    project.contact_person = request.form['contact_person']
+                    project.phone = request.form['phone']
+                    project.pickup_point_address_1 = request.form['pickup_point_address_1']
+                    project.pickup_point_address_2 = request.form['pickup_point_address_2']
 
                     db.session.commit()
                     flash(f'Данные о проекте {project.name} успешно сохранены.', category='success')

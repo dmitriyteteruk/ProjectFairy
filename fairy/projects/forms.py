@@ -10,7 +10,6 @@ class ProjectForm(FlaskForm):
     description = TextAreaField(label='Описание проекта', validators=[DataRequired(), Length(max=10000)])
     delivery_date = DateField(label='Крайний срок сбора подарков на СВХ')
     visit_date = DateField(label='Дата поездки')
-    submit = SubmitField(label='Сохранить')
     delivery_address = StringField(label='Адрес для доставки', validators=[Length(max=1000)])
     contact_person = StringField(label='Контактное лицо для службы доставки', validators=[Length(max=60)])
     phone = StringField(label='Телефон',
@@ -21,3 +20,4 @@ class ProjectForm(FlaskForm):
                                                    '89001112233')])
     pickup_point_address_1 = StringField(label='Адрес пункта самовывоза Ozon', validators=[Length(max=1000)])
     pickup_point_address_2 = StringField(label='Адрес пункта самовывоза Wildberries', validators=[Length(max=1000)])
+    submit = SubmitField(label='Сохранить')
