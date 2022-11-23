@@ -5,6 +5,8 @@ from flask import render_template, redirect, url_for, flash, request, Blueprint,
 from flask_login import login_user, logout_user, login_required, current_user
 from flask_mail import Mail, Message
 from itsdangerous import URLSafeTimedSerializer
+from sqlalchemy import func, distinct
+
 from fairy import app, db, send_email
 from fairy.users.forms import RegisterForm, LoginForm, ProfileUpdateForm, RequestResetPasswordForm, \
     ResetPasswordForm
@@ -226,7 +228,10 @@ def welcome_page():
 @login_required
 def status_page():
     if current_user.role == "admin":
-        users = Santa.query.all()
+        users_registered = Santa.query.with_entities(func.count(distinct(Santa.email_address))).scalar()
+        users_activated = Santa.query.filter(Santa.confirmed == True).count()
+        number_of_santas_with_at_least_1_gift = Gift.query.with_entities(func.count(distinct(Gift.santa_id))).scalar()
+        number_of_santas_without_gifts = users_activated - number_of_santas_with_at_least_1_gift
         gifts = Gift.query.all()
         gifts_on_tree = Gift.query.filter(Gift.status == None).all()
         gifts_picked_by_santas = Gift.query.filter(Gift.status != None).all()
@@ -235,9 +240,13 @@ def status_page():
         houses = House.query.all()
         house_id = House.query.filter_by(id=House.id)
         projects = Project.query.all()
-        return render_template('status.html', gifts=gifts, users=users, houses=houses, projects=projects,
+        return render_template('status.html', gifts=gifts, houses=houses, projects=projects,
                                gifts_on_tree=gifts_on_tree, gifts_picked_by_santas=gifts_picked_by_santas,
-                               gifts_ordered=gifts_ordered, gifts_on_warehouse=gifts_on_warehouse, house_id=house_id
+                               gifts_ordered=gifts_ordered, gifts_on_warehouse=gifts_on_warehouse, house_id=house_id,
+                               number_of_santas_with_at_least_1_gift=number_of_santas_with_at_least_1_gift,
+                               users_activated=users_activated,
+                               users_registered=users_registered,
+                               number_of_santas_without_gifts=number_of_santas_without_gifts,
                                )
     else:
         abort(403)
