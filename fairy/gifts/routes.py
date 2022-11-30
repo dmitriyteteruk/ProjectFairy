@@ -19,7 +19,7 @@ gifts_bp = Blueprint('gifts_bp', __name__)
 @login_required
 def gifts_page(page_num):
     if current_user.role == "admin":
-        gifts = Gift.query.paginate(per_page=20, page=page_num, error_out=True)
+        gifts = Gift.query.paginate(per_page=10, page=page_num, error_out=True)
         return render_template('gifts.html', gifts=gifts)
     else:
         abort(403)
