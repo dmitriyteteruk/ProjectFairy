@@ -1,5 +1,9 @@
 <p>Уважаемый {{ user.first_name }},</p>
 <p>Вы сняли с цифровой Елки подарок {{ gift.name }} для {{ gift.kid.name }}.</p>
+<p>Детали подарка:<br>
+    {% if gift.description == "" %} Нет описания
+    {% else %} {{ gift.description }}
+    {% endif %}</p>
 <p>Осталось совсем немного:
 <ol>
     <li>Найдите подходящий подарок</li>
