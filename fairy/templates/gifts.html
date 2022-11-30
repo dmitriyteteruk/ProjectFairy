@@ -90,7 +90,8 @@
                     <div class="col"> {% for page in gifts.iter_pages(left_edge=3, right_edge=3, left_current=3,
             right_current=3) %}
                         {% if page %}
-                            <a class="btn btn-primary" href="{{ url_for('gifts_bp.tree_page', page_num=page) }}"> {{ page }}</a>
+                            <a class="btn btn-primary" href="{{ url_for('gifts_bp.gifts_page', page_num=page) }}"> {{
+                                    page }}</a>
                         {% endif %}
                     {% endfor %}
                     </div>
