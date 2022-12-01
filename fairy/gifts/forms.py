@@ -7,7 +7,7 @@ from wtforms.validators import Length, DataRequired
 # форма подарка
 class GiftForm(FlaskForm):
     name = StringField(label='Название', validators=[DataRequired(message='name'), Length(max=100)])
-    description = TextAreaField(label='Подробное описание', validators=[Length(max=300)])
+    description = TextAreaField(label='Подробное описание', validators=[Length(max=1000)])
     postcard_url = HiddenField(label='Ссылка на файл открытки')
     house = SelectField(label='Выберите учреждение', choices=[], coerce=int, validate_choice=False)
     kid = SelectField(label='Выберите ребенка', choices=[], coerce=int, validate_choice=False)
