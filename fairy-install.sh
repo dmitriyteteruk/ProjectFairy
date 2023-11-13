@@ -91,10 +91,10 @@ EOF
 
 # Uncomment below code if you want to connect to MySQL BD from any IP
 # This option is switched off by default for security reason
-#echo "[mysqld]" | sudo tee -a /etc/mysql/my.cnf > /dev/null
-#echo "bind-address = 0.0.0.0" | sudo tee -a /etc/mysql/my.cnf > /dev/null
-#sudo systemctl restart mysql.service
-#sleep 5
+echo "[mysqld]" | sudo tee -a /etc/mysql/my.cnf > /dev/null
+echo "bind-address = 0.0.0.0" | sudo tee -a /etc/mysql/my.cnf > /dev/null
+sudo systemctl restart mysql.service
+sleep 5
 
 echo "Creating DB, required tables and admin account"
 # Creating new user and assign permissions
