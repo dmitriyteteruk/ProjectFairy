@@ -263,7 +263,7 @@ server
 					          $LOCAL_IP_ADDRESS;
 
         location /fairy/static/  {
-                root /home/ubuntu/$PROJECT_FOLDER/fairy/static;
+                root /home/fairy/$PROJECT_FOLDER/fairy/static;
         }
 
 
@@ -291,9 +291,9 @@ sudo NEEDRESTART_MODE=a apt install supervisor -y
 sudo touch /etc/supervisor/conf.d/flask.conf
 sudo tee -a /etc/supervisor/conf.d/flask.conf > /dev/null <<EOF
 [program:flask]
-directory=/home/ubuntu/$PROJECT_FOLDER
-command=/home/ubuntu/$PROJECT_FOLDER/venv/bin/gunicorn -w 3 run:app
-user=ubuntu
+directory=/home/fairy/$PROJECT_FOLDER
+command=/home/fairy/$PROJECT_FOLDER/venv/bin/gunicorn -w 3 run:app
+user=fairy
 autostart=true
 autorestart=true
 stopasgroup=true
