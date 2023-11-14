@@ -120,7 +120,7 @@ CREATE TABLE house (
   email varchar(60) NOT NULL,
   contact_person varchar(200) NOT NULL,
   PRIMARY KEY (id)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE kid (
   id int NOT NULL AUTO_INCREMENT,
@@ -130,7 +130,7 @@ CREATE TABLE kid (
   PRIMARY KEY (id),
   KEY house_id (house_id),
   CONSTRAINT kid_ibfk_1 FOREIGN KEY (house_id) REFERENCES house (id)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE project (
   id int NOT NULL AUTO_INCREMENT,
@@ -138,8 +138,13 @@ CREATE TABLE project (
   description text NOT NULL,
   delivery_date date DEFAULT NULL,
   visit_date date DEFAULT NULL,
+  delivery_address varchar(1000) NOT NULL,
+  contact_person varchar(60) NOT NULL,
+  phone varchar(15) NOT NULL,
+  pickup_point_address_1 varchar(1000) NOT NULL,
+  pickup_point_address_2 varchar(1000) NOT NULL,
   PRIMARY KEY (id)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE santa (
   id int NOT NULL AUTO_INCREMENT,
@@ -155,7 +160,7 @@ CREATE TABLE santa (
   PRIMARY KEY (id),
   UNIQUE KEY email_address (email_address),
   KEY role_id (role,id)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE gift (
   id int unsigned NOT NULL AUTO_INCREMENT,

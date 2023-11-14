@@ -60,15 +60,15 @@ def project_edit(id):
         if project_form.validate_on_submit():
             if request.method == 'POST':
                 if project:
-                    project.name = request.form['name']
-                    project.description = request.form['description']
-                    project.delivery_date = request.form['delivery_date']
-                    project.visit_date = request.form['visit_date']
-                    project.delivery_address = request.form['delivery_address']
-                    project.contact_person = request.form['contact_person']
-                    project.phone = request.form['phone']
-                    project.pickup_point_address_1 = request.form['pickup_point_address_1']
-                    project.pickup_point_address_2 = request.form['pickup_point_address_2']
+                    project.name = request.form['name'].encode('utf-8')
+                    project.description = request.form['description'].encode('utf-8')
+                    project.delivery_date = request.form['delivery_date'].encode('utf-8')
+                    project.visit_date = request.form['visit_date'].encode('utf-8')
+                    project.delivery_address = request.form['delivery_address'].encode('utf-8')
+                    project.contact_person = request.form['contact_person'].encode('utf-8')
+                    project.phone = request.form['phone'].encode('utf-8')
+                    project.pickup_point_address_1 = request.form['pickup_point_address_1'].encode('utf-8')
+                    project.pickup_point_address_2 = request.form['pickup_point_address_2'].encode('utf-8')
                     db.session.commit()
                     flash(f'Данные о проекте {project.name} успешно сохранены.', category='success')
                     return redirect(url_for('projects_bp.projects_page'))
