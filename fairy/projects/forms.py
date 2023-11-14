@@ -18,4 +18,5 @@ class ProjectForm(FlaskForm):
                                            message='Ошибка ввода номера телефона! Введите номер телефона в формате '
                                                    '89001112233')])
     pickup_point_address_1 = StringField(label='Адрес пункта самовывоза Ozon', validators=[Length(max=1000)])
+    pickup_point_address_2 = StringField(label='Адрес пункта самовывоза Wildberries', validators=[Length(max=1000)])
     submit = SubmitField(label='Сохранить')
