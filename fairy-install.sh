@@ -139,8 +139,8 @@ CREATE TABLE project (
   delivery_date date DEFAULT NULL,
   visit_date date DEFAULT NULL,
   delivery_address varchar(1000) NOT NULL,
-  contact_person varchar(60) NOT NULL,
-  phone varchar(15) NOT NULL,
+  contact_person varchar(200) NOT NULL,
+  phone varchar(100) NOT NULL,
   pickup_point_address_1 varchar(1000) NOT NULL,
   pickup_point_address_2 varchar(1000) NOT NULL,
   PRIMARY KEY (id)
@@ -225,6 +225,14 @@ python3 -m venv ~/$PROJECT_FOLDER/venv
 # Install all project requirements
 pip install -r ~/$PROJECT_FOLDER/requirements.txt
 
+#  Google Recaptcha setup
+echo "Please add required information for Google Recaptcha."
+read -p "Step 1. Enter RECAPTCHA_PUBLIC_KEY (first key):  " RECAPTCHA_PUBLIC_KEY
+read -p "Step 2. Enter RECAPTCHA_PRIVATE_KEY (second key):  " RECAPTCHA_PRIVATE_KEY
+echo ""
+echo "IMPORTANT! Administrator account setup."
+read -p "Enter email address of Fairy Web App Administrator. Email will be used for Login:  " FLASKY_ADMIN
+
 # Create config file with credentials for Flask App
 sudo touch /etc/config.json
 sudo tee -a /etc/config.json > /dev/null <<EOF
@@ -235,7 +243,9 @@ sudo tee -a /etc/config.json > /dev/null <<EOF
         "SECRET_KEY_FOR_TOKEN": "$SECRET_KEY_FOR_TOKEN",
         "MAIL_PASSWORD": "$MAIL_PASSWORD",
         "FLASKY_ADMIN": "$FLASKY_ADMIN",
-        "FLASKY_MAIL_SENDER": "$FLASKY_MAIL_SENDER"
+        "FLASKY_MAIL_SENDER": "$FLASKY_MAIL_SENDER",
+        "RECAPTCHA_PUBLIC_KEY": "$RECAPTCHA_PUBLIC_KEY",
+        "RECAPTCHA_PRIVATE_KEY": "$RECAPTCHA_PRIVATE_KEY"
 }
 EOF
 
