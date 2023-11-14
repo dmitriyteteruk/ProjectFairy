@@ -61,16 +61,16 @@ class Project(db.Model):
     __tablename__ = 'project'
 
     id = db.Column(db.Integer(), primary_key=True)
-    name = db.Column(db.String(length=100), nullable=False).decode('utf-8')
-    description = db.Column(db.Text, nullable=False).decode('utf-8')
-    delivery_date = db.Column(db.DateTime, nullable=False).decode('utf-8')
-    visit_date = db.Column(db.DateTime, nullable=False).decode('utf-8')
-    gift = db.relationship('Gift', backref='project', lazy=True).decode('utf-8')
-    delivery_address = db.Column(db.String(length=1000), nullable=True).decode('utf-8')
-    contact_person = db.Column(db.String(length=60), nullable=True).decode('utf-8')
-    phone = db.Column(db.String(length=20), nullable=True).decode('utf-8')
-    pickup_point_address_1 = db.Column(db.String(length=1000), nullable=True).decode('utf-8')
-    pickup_point_address_2 = db.Column(db.String(length=1000), nullable=True).decode('utf-8')
+    name = db.Column(db.String(length=100), nullable=False)
+    description = db.Column(db.Text, nullable=False)
+    delivery_date = db.Column(db.DateTime, nullable=False)
+    visit_date = db.Column(db.DateTime, nullable=False)
+    gift = db.relationship('Gift', backref='project', lazy=True)
+    delivery_address = db.Column(db.String(length=1000), nullable=True)
+    contact_person = db.Column(db.String(length=60), nullable=True)
+    phone = db.Column(db.String(length=20), nullable=True)
+    pickup_point_address_1 = db.Column(db.String(length=1000), nullable=True)
+    pickup_point_address_2 = db.Column(db.String(length=1000), nullable=True)
 
 
 
