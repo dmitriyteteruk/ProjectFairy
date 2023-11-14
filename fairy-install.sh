@@ -252,6 +252,7 @@ EOF
 # Export flask app
 export FLASK_APP=~/$PROJECT_FOLDER/run.py
 sudo mkdir ~/$PROJECT_FOLDER/fairy/static/uploads
+sudo sudo chown -R $USER ~/$PROJECT_FOLDER/fairy/static/uploads
 
 ## ------------------------- BUG при повторной установке ------------- #№
 ## Не создаются файлы NGINX ###
