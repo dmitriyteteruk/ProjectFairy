@@ -56,7 +56,8 @@ def register_page():
                          first_name=form.first_name.data,
                          last_name=form.last_name.data,
                          phone=form.phone.data,
-                         role="user",
+                         role="user",   # Роль 'user' назначается по умолчанию всем, кто самостоятельно
+                         # регистрируется. Изменить роль на 'admin' можно только через БД.
                          confirmed=False,
                          registered_on=datetime.datetime.now())
             db.session.add(user)
@@ -76,7 +77,8 @@ def register_page():
                        'mail/new_user', user=user)
 
         flash(f'Учетная запись для адреса почты  '
-              f'{user.email_address} успешно создана!', category='success')
+              f'{user.email_address} успешно создана! Проверьте почтовый ящик и подтвердите Вашу учетную запись.',
+              category='success')
 
         return redirect(url_for('utils_bp.registered'))
 
