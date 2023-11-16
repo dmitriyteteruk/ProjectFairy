@@ -56,8 +56,7 @@ def register_page():
                          first_name=form.first_name.data,
                          last_name=form.last_name.data,
                          phone=form.phone.data,
-                         role="user",   # Роль 'user' назначается по умолчанию всем, кто самостоятельно
-                         # регистрируется. Изменить роль на 'admin' можно только через БД.
+                         role="user",
                          confirmed=False,
                          registered_on=datetime.datetime.now())
             db.session.add(user)
@@ -77,8 +76,7 @@ def register_page():
                        'mail/new_user', user=user)
 
         flash(f'Учетная запись для адреса почты  '
-              f'{user.email_address} успешно создана! Проверьте почтовый ящик и подтвердите Вашу учетную запись.',
-              category='success')
+              f'{user.email_address} успешно создана!', category='success')
 
         return redirect(url_for('utils_bp.registered'))
 
@@ -125,9 +123,8 @@ def reset_password_with_token(token):
     reset_password_form = ResetPasswordForm()
     if reset_password_form.validate_on_submit():
         salt = bcrypt.gensalt()
-        password = reset_password_form.password1.data
-        password = password.encode('utf-8')
-        Santa.password_hash = bcrypt.hashpw(password, salt)
+        password = reset_password_form.password1.data.encode('utf-8')
+        user.password_hash = bcrypt.hashpw(password, salt)
         db.session.commit()
         flash(f'Ваш пароль был успешно обновлен! Вы можете авторизоваться в системе', category='success')
         return redirect(url_for('users_bp.login_page'))

@@ -102,6 +102,7 @@ class RequestResetPasswordForm(FlaskForm):
             raise ValidationError('Учетная запись с таким ящиком электронной почты не найдена или вы ввели не '
                                   'корректный адрес электронной почты.')
 
+
 # форма ввода нового пароля, после сброса
 class ResetPasswordForm(FlaskForm):
     password1 = PasswordField(label='Пароль:', validators=[Length(min=6), DataRequired()])
