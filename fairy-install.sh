@@ -230,8 +230,6 @@ echo "Please add required information for Google Recaptcha."
 read -p "Step 1. Enter RECAPTCHA_PUBLIC_KEY (first key):  " RECAPTCHA_PUBLIC_KEY
 read -p "Step 2. Enter RECAPTCHA_PRIVATE_KEY (second key):  " RECAPTCHA_PRIVATE_KEY
 echo ""
-echo "IMPORTANT! Administrator account setup."
-read -p "Enter email address of Fairy Web App Administrator. Email will be used for Login:  " FLASKY_ADMIN
 
 # Create config file with credentials for Flask App
 sudo touch /etc/config.json
@@ -251,8 +249,9 @@ EOF
 
 # Export flask app
 export FLASK_APP=~/$PROJECT_FOLDER/run.py
-sudo mkdir ~/$PROJECT_FOLDER/fairy/static/uploads
-sudo sudo chown -R $USER ~/$PROJECT_FOLDER/fairy/static/uploads
+
+# Создаем директорию для загрузки файлов
+mkdir ~/$PROJECT_FOLDER/fairy/static/uploads
 
 ## ------------------------- BUG при повторной установке ------------- #№
 ## Не создаются файлы NGINX ###
@@ -268,8 +267,8 @@ sudo touch /etc/nginx/sites-enabled/flask
 export PUBLIC_IP_ADDRESS=`wget -qO- https://ipecho.net/plain`
 export LOCAL_IP_ADDRESS=`hostname -I`
 sudo tee -a /etc/nginx/sites-enabled/flask > /dev/null <<EOF
-limit_req_zone \$binary_remote_addr zone=login_register:10m rate=10r/s;
-limit_req_zone \$binary_remote_addr zone=all:10m rate=10r/s;
+limit_req_zone \$binary_remote_addr zone=login_register:10m rate=20r/s;
+limit_req_zone \$binary_remote_addr zone=all:10m rate=20r/s;
 
 server
 {
