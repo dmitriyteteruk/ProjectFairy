@@ -127,8 +127,7 @@ def reset_password_with_token(token):
         salt = bcrypt.gensalt()
         password = reset_password_form.password1.data
         password = password.encode('utf-8')
-        password_hash = bcrypt.hashpw(password, salt)
-        user.password_hash = password_hash
+        Santa.password_hash = bcrypt.hashpw(password, salt)
         db.session.commit()
         flash(f'Ваш пароль был успешно обновлен! Вы можете авторизоваться в системе', category='success')
         return redirect(url_for('users_bp.login_page'))
