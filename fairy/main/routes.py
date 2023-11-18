@@ -1,4 +1,5 @@
 from flask import render_template, Blueprint
+from fairy.models import Gift, Project
 
 main_bp = Blueprint('main_bp', __name__)
 
@@ -7,7 +8,9 @@ main_bp = Blueprint('main_bp', __name__)
 @main_bp.route('/')
 @main_bp.route('/home')
 def home_page():
-    return render_template('home.html')
+    project_name = Project.query.filter(Project.name != None).first()
+    gifts_on_tree = Gift.query.filter(Gift.status == None).all()
+    return render_template('home.html', gifts_on_tree=gifts_on_tree, project_name=project_name)
 
 
 # About page route - description about the project
