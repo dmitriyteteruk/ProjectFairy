@@ -6,6 +6,13 @@
     <div class="row" style="margin-top: 20px; margin-left: 20px">
         <div class="col">
             <h3>Мои подарки</h3>
+        {% if gifts_on_tree|count != 0 %}
+        <p>На сегодняшнюю дату на елке осталось еще <b>
+            <a style="color: #c82333"> {{ gifts_on_tree|count }}</a></b> подарка(-ов).
+            Если ты можешь снять с  <a href="{{ url_for('gifts_bp.tree_page', page_num=1) }}">Елки</a> еще один шарик
+            с подарком, мы будем тебе очень благодарны!</p>
+        {% else %}
+        {% endif %}
             <p>Для обновления статуса используйте выпадающее меню</p>
             <table class="table table-hover">
                 <thead>

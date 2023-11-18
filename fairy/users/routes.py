@@ -146,8 +146,10 @@ def all_my_gifts_page():
     gift_status_update_form = GiftStatusUpdateForm()
     mail = Mail()
     gifts = Gift.query.filter_by(santa_id=current_user.id)
+    gifts_on_tree = Gift.query.filter(Gift.status == None).all()
     if request.method == "GET":
-        return render_template('mygifts.html', gifts=gifts, gift_status_update_form=gift_status_update_form)
+        return render_template('mygifts.html', gifts=gifts, gift_status_update_form=gift_status_update_form,
+                               gifts_on_tree=gifts_on_tree)
 
     if request.method == "POST":
         picked_gift = request.form.get('picked_gift')
