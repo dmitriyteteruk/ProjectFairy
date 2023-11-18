@@ -142,8 +142,9 @@
     {% endif %}
     {% endfor %}
 </div>
+
 <div style="text-align: center">{% if gifts_on_tree|count != 0 %}
-        <p>На сегодняшнюю дату на елке осталось еще <b>
+         <br><br><p>На сегодняшнюю дату на елке осталось еще <b>
             <a style="color: #c82333"> {{ gifts_on_tree|count }}</a></b> подарка(-ов).<br>
             Если ты можешь снять с  <a href="{{ url_for('gifts_bp.tree_page', page_num=1) }}">Елки</a> еще один шарик
             с подарком, мы будем тебе очень благодарны!</p>
