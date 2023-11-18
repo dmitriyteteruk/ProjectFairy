@@ -193,13 +193,13 @@ def kid_by_house(get_kid):
 @login_required
 def tree_page():
     purchase_form = PickGift()
-    mail = Mail()
+    gifts_on_tree = Gift.query.filter(Gift.status == None).all()
 
     # логика отображения данные из БД, где подарок не снят.
     if request.method == "GET":
         # выводим 5 случайных подарков
         gifts = Gift.query.filter_by(santa_id=None).order_by(func.rand()).limit(5).all()
-        return render_template('tree.html', gifts=gifts, purchase_form=purchase_form)
+        return render_template('tree.html', gifts=gifts, purchase_form=purchase_form, gifts_on_tree=gifts_on_tree)
 
     # Purchase item logic
     if request.method == "POST":
