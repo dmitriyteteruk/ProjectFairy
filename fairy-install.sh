@@ -153,7 +153,7 @@ CREATE TABLE santa (
   first_name varchar(30) NOT NULL,
   last_name varchar(30) NOT NULL,
   phone varchar(15) NOT NULL,
-  role varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT 'user',
+  role varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'user',
   confirmed tinyint DEFAULT '0',
   confirmed_on datetime DEFAULT NULL,
   registered_on datetime DEFAULT NULL,
@@ -193,7 +193,7 @@ role,
 confirmed)
 VALUES
 ("$FLASKY_ADMIN",
-"1234567890",
+"$2b$12$Nw8Xd8jzc4.S3Nd.0Hn1puE3/ugcWYBm8Lhkre5kN.qpvx5c5NHZi",
 "First Name",
 "Last Name",
 "89001112233",
