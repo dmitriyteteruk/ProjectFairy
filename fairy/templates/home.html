@@ -11,10 +11,12 @@ left:20px;
 right:20px; margin: auto">
     <h3>Платформа управления благотворительными акциями Фея</h3>
   <p>Творите добро с удобством!</p>
-  <H3>Активный проект: {{ project_name }}</H3>
-    <H3>Осталось подарков: {{ gifts_on_tree|count }}</H3>
 
   <a class="btn btn-primary" href="{{ url_for('users_bp.register_page')}}">Начнем!</a>
+
+  <H3>{{ project_name.name }}</H3>
+    <H3>Осталось подарков: {{ gifts_on_tree|count }}</H3>
+
 </div>
 
 {% endblock %}
