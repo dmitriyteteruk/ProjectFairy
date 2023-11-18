@@ -13,9 +13,9 @@ right:20px; margin: auto">
   <p>Творите добро с удобством!</p>
 
   <a class="btn btn-primary" href="{{ url_for('users_bp.register_page')}}">Начнем!</a>
-<br>
-  <H4>Активный проект {{ project_name.name }}</H4>
-    <H4>Осталось подарков: {{ gifts_on_tree|count }}</H4>
+<br><br>
+  <H5>Активный проект: {{ project_name.name }}</H5>
+    <H5>Осталось подарков: {{ gifts_on_tree|count }}</H5>
 
 </div>
 
