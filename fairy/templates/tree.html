@@ -141,13 +141,15 @@
         </div>
     {% endif %}
     {% endfor %}
-{% if gifts|length < 1 %}
-     <div style="text-align: center">
+</div>
+<div style="text-align: center">
+    {% if gifts|length < 1 %}
+
 <p>На сегодняшнюю дату на елке осталось еще <b>
             <a style="color: #c82333"> {{ gifts_on_tree|count }}</a></b> подарка(-ов).
             Если ты можешь снять с  <a href="{{ url_for('gifts_bp.tree_page', page_num=1) }}">Елки</a> еще один шарик
             с подарком, мы будем тебе очень благодарны!</p>
+
 {% endif %}
-    </div>
-</div>
+ </div>
 {% endblock %}
