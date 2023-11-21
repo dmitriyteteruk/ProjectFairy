@@ -15,7 +15,7 @@ right:20px; margin: auto">
   <a class="btn btn-primary" href="{{ url_for('users_bp.register_page')}}">Начнем!</a>
 <br><br>
   <H5>Активный проект: {{ project_name.name }}</H5>
-    <H5>Осталось подарков: {{ gifts_on_tree|count }}</H5>
+    <H5>Осталось подарков: {{ gifts_on_tree|count }} из {{ gifts_total|count }}</H5>
 
 </div>
 

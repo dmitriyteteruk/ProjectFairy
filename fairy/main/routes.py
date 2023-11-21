@@ -10,7 +10,8 @@ main_bp = Blueprint('main_bp', __name__)
 def home_page():
     project_name = Project.query.filter(Project.name != None).first()
     gifts_on_tree = Gift.query.filter(Gift.status == None).all()
-    return render_template('home.html', gifts_on_tree=gifts_on_tree, project_name=project_name)
+    gifts_total = Gift.query.filter(Gift.id).all
+    return render_template('home.html', gifts_on_tree=gifts_on_tree, project_name=project_name, gifts_total=gifts_total)
 
 
 # About page route - description about the project
