@@ -8,6 +8,7 @@
                     {{ gift_status_update_form.hidden_tag() }}
 
                     <h5 class="text-center">Просмотр подарка и обновление статуса</h5>
+                 <p>Для обновления статуса используйте выпадающее меню и нажмите кнопку Сохранить</p>
                     <!-- Строка 1 -->
                     <div class="row">
                         <div class="col-2">Подарок:</div>
@@ -71,7 +72,7 @@
 
 
                 </form>
-                <h4>Открытка</h4>
+                <h4 style="align-content: center">Открытка</h4>
                 <img style="max-width: 95%" src="{{ url_for("gifts_bp.display_image", filename=gift
                     .postcard_url) }}">
             </div>
