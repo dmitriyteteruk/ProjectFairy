@@ -40,8 +40,30 @@
                     </div>
                                 <!-- Строка 4 -->
                     <div class="row">
-                        <div class="col-2">СТРОКА 4:</div>
-                        <div class="col-10">Текст строки 4</div>
+                            <div class="col-2">Статус:</div>
+                            <div class="col-10">
+                                <input id="picked_gift" name="picked_gift" type="hidden" value="{{ gift.id }}">
+                                <select name="status">
+                                    <option value="0"
+                                            {% if gift.status == 0 %}
+                                            selected
+                                            {% endif %}
+                                    >Снят
+                                    </option>
+                                    <option value="1"
+                                            {% if gift.status == 1 %}
+                                            selected
+                                            {% endif %}
+                                    >Заказан
+                                    </option>
+                                    <option value="2"
+                                            {% if gift.status == 2 %}
+                                            selected
+                                            {% endif %}
+                                    >Доставлен на СВХ
+                                    </option>
+                                </select>
+                            </div>
                     </div>
                         <br>
 
