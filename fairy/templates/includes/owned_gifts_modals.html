@@ -9,20 +9,20 @@
 
                     <h5 class="text-center">Просмотр подарка и обновление статуса</h5>
                     <div class="row">
-                        <div class="col-3">Подарок:</div>
-                        <div class="col-9">{{ gift.name }}</div>
+                        <div class="col-4">Подарок:</div>
+                        <div class="col-8">{{ gift.name }}</div>
                     </div>
                     <div class="row">
-                        <div class="col-3">Подробно:</div>
-                        <div class="col-9">
+                        <div class="col-4">Подробно:</div>
+                        <div class="col-8">
                             {% if gift.description == "" %} Нет описания
 
                             {% elif gift.description != None %} {{ gift.description }}
                             {% endif %}
                         </div>
                         <div class="row">
-                            <div class="col-3">Ребенок:</div>
-                            <div class="col-9">{{ gift.kid.name }}
+                            <div class="col-4">Ребенок:</div>
+                            <div class="col-8">{{ gift.kid.name }}
                                 {% if age_calculator(gift.kid.birthday) == 1 %}
                                     ({{ age_calculator(gift.kid.birthday) }} год)
                                 {% endif %}
@@ -35,8 +35,8 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-3">Статус:</div>
-                            <div class="col-9">
+                            <div class="col-4">Статус:</div>
+                            <div class="col-8">
                                 <input id="picked_gift" name="picked_gift" type="hidden" value="{{ gift.id }}">
                                 <select name="status">
                                     <option value="0"

@@ -14,7 +14,7 @@ from fairy.models import Gift, Santa, Project, House, Kid
 gifts_bp = Blueprint('gifts_bp', __name__)
 
 
-# GITS page route
+# GIFTS page route
 @gifts_bp.route('/gifts/page/<int:page_num>')
 @login_required
 def gifts_page(page_num):
