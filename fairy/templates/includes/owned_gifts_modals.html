@@ -1,28 +1,32 @@
 <!-- Обновление статуса подарка -->
 <div class="modal fade" id="Model-StatusUpdate-{{ gift.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
-    <div class="modal-dialog" style="max-width:1000px;">
-        <div class="modal-content">
-            <div class="modal-body">
+    <tr class="modal-dialog" style="max-width:1000px;">
+        <tr class="modal-content">
+            <td class="modal-body">
                 <form method="post">
                     {{ gift_status_update_form.hidden_tag() }}
 
                     <h5 class="text-center">Просмотр подарка и обновление статуса</h5>
-                    <div class="row">
-                        <div class="col-2">Подарок:</div>
-                        <div class="col-10">{{ gift.name }}</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2">Подробно:</div>
-                        <div class="col-10">
+                    <!-- Строка 1 -->
+                    <tr>
+                        <td class="col-2">Подарок:</td>
+                        <td class="col-10">{{ gift.name }}</td>
+                    </tr>
+                    <!-- Строка 2 -->
+                    <tr>
+                        <td class="col-2">Подробно:</td>
+                        <td class="col-10">
                             {% if gift.description == "" %} Нет описания
 
                             {% elif gift.description != None %} {{ gift.description }}
                             {% endif %}
-                        </div>
-                        <div class="row">
-                            <div class="col-2">Ребенок:</div>
-                            <div class="col-10">{{ gift.kid.name }}
+                        </td>
+                    </tr>
+                    <!-- Строка 3 -->
+                    <tr>
+                            <td class="col-2">Ребенок:</td>
+                            <td class="col-10">{{ gift.kid.name }}
                                 {% if age_calculator(gift.kid.birthday) == 1 %}
                                     ({{ age_calculator(gift.kid.birthday) }} год)
                                 {% endif %}
@@ -32,9 +36,36 @@
                                 {% if 5 <= age_calculator(gift.kid.birthday) <= 20 %}
                                     ({{ age_calculator(gift.kid.birthday) }} лет)
                                 {% endif %}
-                            </div>
-                        </div>
-                        <br><br>
+                            </td>
+                    </tr>
+                        <!-- ТЕСТ -->
+                        <tr>
+                            <td class="col-2">Статус:</td>
+                            <td class="col-10">
+                                <input id="picked_gift" name="picked_gift" type="hidden" value="{{ gift.id }}">
+                                <select name="status">
+                                    <option value="0"
+                                            {% if gift.status == 0 %}
+                                            selected
+                                            {% endif %}
+                                    >Снят
+                                    </option>
+                                    <option value="1"
+                                            {% if gift.status == 1 %}
+                                            selected
+                                            {% endif %}
+                                    >Заказан
+                                    </option>
+                                    <option value="2"
+                                            {% if gift.status == 2 %}
+                                            selected
+                                            {% endif %}
+                                    >Доставлен на СВХ
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <!-- ТЕСТ
                         <div class="row">
                             <div class="col-2">Статус:</div>
                             <div class="col-10">
@@ -60,7 +91,7 @@
                                     </option>
                                 </select>
                             </div>
-                        </div>
+                        </div>-->
                         <br>
 
                         {{ gift_status_update_form.submit(class="btn btn-outline-danger btn-block") }}
@@ -78,4 +109,5 @@
             </div>
         </div>
     </div>
+</td></tr></tr>
 </div>
