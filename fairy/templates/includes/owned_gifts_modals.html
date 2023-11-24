@@ -2,17 +2,17 @@
 <div class="modal fade" id="Model-StatusUpdate-{{ gift.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <tr class="modal-dialog" style="max-width:1000px;">
-        <tr class="modal-content">
+        <div class="modal-content">
             <td class="modal-body">
                 <form method="post">
                     {{ gift_status_update_form.hidden_tag() }}
 
                     <h5 class="text-center">Просмотр подарка и обновление статуса</h5>
                     <!-- Строка 1 -->
-                    <tr>
-                        <td class="col-2">Подарок:</td>
-                        <td class="col-10">{{ gift.name }}</td>
-                    </tr>
+                    <div class="row">
+                        <div class="col-2">Подарок:</div>
+                        <div class="col-10">{{ gift.name }}</div>
+                    </div>
                     <!-- Строка 2 -->
                     <tr>
                         <td class="col-2">Подробно:</td>
