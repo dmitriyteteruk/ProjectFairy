@@ -13,7 +13,7 @@
                         <div class="col-10">{{ gift.name }}</div>
                     </div>
                     <div class="row">
-                        <div class="col-2>Подробно:</div>
+                        <div class="col-2">Подробно:</div>
                         <div class="col-10">
                             {% if gift.description == "" %} Нет описания
 
@@ -34,10 +34,10 @@
                                 {% endif %}
                             </div>
                         </div>
-                        <br>
+                        <br><br>
                         <div class="row">
                             <div class="col-2">Статус:</div>
-                            <div class="col">
+                            <div class="col-10">
                                 <input id="picked_gift" name="picked_gift" type="hidden" value="{{ gift.id }}">
                                 <select name="status">
                                     <option value="0"
