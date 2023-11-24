@@ -25,8 +25,18 @@
                     </div>
                 <!-- Строка 3 -->
                     <div class="row">
-                        <div class="col-2">СТРОКА 3:</div>
-                        <div class="col-10">Текст строки 3</div>
+                           <div class="col-2">Ребенок:</div>
+                            <div class="col-10">{{ gift.kid.name }}
+                                {% if age_calculator(gift.kid.birthday) == 1 %}
+                                    ({{ age_calculator(gift.kid.birthday) }} год)
+                                {% endif %}
+                                {% if 2 <= age_calculator(gift.kid.birthday) <= 4 %}
+                                    ({{ age_calculator(gift.kid.birthday) }} года)
+                                {% endif %}
+                                {% if 5 <= age_calculator(gift.kid.birthday) <= 20 %}
+                                    ({{ age_calculator(gift.kid.birthday) }} лет)
+                                {% endif %}
+                            </div>
                     </div>
                                 <!-- Строка 4 -->
                     <div class="row">
