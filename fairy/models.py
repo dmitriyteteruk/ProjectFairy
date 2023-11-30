@@ -87,6 +87,9 @@ class Gift(db.Model):
     status = db.Column(db.Integer(), nullable=True)
     status_updated_time = db.Column(db.DateTime(), nullable=True)
     status_updated_by_user = db.Column(db.Integer(), nullable=True)
+    # Добавлены номер заказа и скриншот
+    order_number = db.Column(db.String(length=100), nullable=True)
+    order_get_screenshot = db.Column(db.String(length=100), nullable=True)
 
 
     def __repr__(self):
