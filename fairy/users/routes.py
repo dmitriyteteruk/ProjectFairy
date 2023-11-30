@@ -85,12 +85,6 @@ def register_page():
             separator = ' '
             err_msg_txt = separator.join(word for word in err_msg if word)
             flash(f'Произошла ошибка при создании учетной записи: {err_msg_txt}', category='danger')
-
-
-            ### Код ниже рабочий, а выше тестовый
-            # err_msg_as_text = '\n'.join([x[0]] for x in err_msg)
-            # flash(f'Произошла ошибка при создании учетной записи : {err_msg_as_text}', category='danger')
-
     return render_template('register.html', form=form)
 
 
