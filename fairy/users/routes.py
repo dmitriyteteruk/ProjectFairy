@@ -82,11 +82,9 @@ def register_page():
 
     if form.errors != {}:  # if there are no errors from validators
         for err_msg in form.errors.values():
-            print(err_msg)
             separator = ' '
             err_msg_txt = separator.join(word for word in err_msg if word)
-            print(err_msg_txt)
-            flash(f'Произошла ошибка при создании учетной записи : {err_msg_txt}', category='danger')
+            flash(f'Произошла ошибка при создании учетной записи: {err_msg_txt}', category='danger')
 
 
             ### Код ниже рабочий, а выше тестовый
