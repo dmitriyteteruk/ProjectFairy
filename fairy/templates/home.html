@@ -6,7 +6,7 @@
 
 {% block content %} 
 
-<div style="text-align:center; max-width: 1000px; max-height: 400px; position: absolute; top:160px; bottom: 0px;
+<div style="text-align:center; max-width: 1000px; max-height: 400px; position: absolute; top:200px; bottom: 0px;
 left:20px;
 right:20px; margin: auto">
     <h3>Платформа управления благотворительными акциями Фея</h3>
@@ -14,8 +14,17 @@ right:20px; margin: auto">
 
   <a class="btn btn-primary" href="{{ url_for('users_bp.register_page')}}">Начнем!</a>
 <br><br>
-  <H5>Активный проект: {{ project_name.name }}</H5>
-    <H5>Осталось подарков: {{ gifts_on_tree|count }} из {{ gifts_total|count }}</H5>
+  {% if active_project.delivery_date > today_date %}
+    {% if gifts_on_tree|count > 0 %}
+  <H5>Активный проект: {{ active_project.name }}</H5>
+  <H5>Осталось подарков: {{ gifts_on_tree|count }} из {{ gifts_total|count }}</H5>
+  <p>Чтобы подарить подарок, необходимо зарегистрироваться.</p>
+  {% else %}
+  <H5>В настоящий момент активных проектов нет! <br>
+  Но лучше зарегистрироваться сейчас, чтобы не пропустить начало сбора подарков.</H5>   
+  {% endif %}
+    {% endif %}
+    
 
 </div>
 
