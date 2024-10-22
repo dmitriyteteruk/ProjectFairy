@@ -220,7 +220,7 @@ def welcome_page():
     gifts = Gift.query.filter_by(santa_id=current_user.id)
     gifts_on_tree = Gift.query.filter(Gift.status == None).all()
     houses = House.query.all()
-    projects = Project.query.all()
+    projects = Project.query.filter(Project.delivery_date > datetime.date.today()).all() # выводим только проекты, даты которых еще не прошли
     return render_template('welcome.html', gifts=gifts, users=users, houses=houses, projects=projects, gifts_on_tree=gifts_on_tree)
 
 
